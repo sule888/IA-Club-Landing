@@ -20,11 +20,11 @@ const props = defineProps({
   },
   animationSpeed: {
     type: Number,
-    default: .34
+    default: .50
   },
   hoverSpeed: {
     type: Number,
-    default: .35
+    default: .50
   }
 })
 
@@ -33,55 +33,94 @@ let scene, camera, renderer, mixer, model
 let currentAction = null
 let actions = {}
 let animationFrame = null
+let greetingTimer = null
+let isHovered = false
+let currentAnimationType = 'default' // 'default', 'hover', 'greeting'
+
+const hoverAnimations = ["ThumbsUp", 'Dance']
+const greetingAnimations = ["Yes", "No"]
+const defaultAnimation = "Walking"
+
 const onMouseEnter = () => {
- const hoverAnimations = ["ThumbsUp", 'Dance', "Standing"]
- const availableAnimations = hoverAnimations.filter(name => actions[name])
- 
- if (availableAnimations.length === 0) return
- 
- const randomAnimation = availableAnimations[Math.floor(Math.random() * availableAnimations.length)]
- 
- if (currentAction) currentAction.stop()
- currentAction = actions[randomAnimation]
- currentAction.reset()
-   .setLoop(THREE.LoopOnce)
-   .setEffectiveTimeScale(props.hoverSpeed)
-   .play()
- 
- currentAction.clampWhenFinished = true
- 
- currentAction.getMixer().addEventListener('finished', () => {
-   const nextAnimation = availableAnimations.find(name => name !== randomAnimation)
-   if (nextAnimation) {
-     currentAction = actions[nextAnimation]
-     currentAction.reset()
-       .setLoop(THREE.LoopOnce)
-       .setEffectiveTimeScale(props.hoverSpeed)
-       .play()
-     currentAction.clampWhenFinished = true
-   }
- })
-}
-const onMouseLeave = () => {
-  setTimeout(() => {
-    startDefaultAnimations()
-  }, 500)
+  isHovered = true
+  
+  // Solo cambiar a animación hover si NO está ya en hover
+  if (currentAnimationType !== 'hover') {
+    playRandomHoverAnimation()
+  }
 }
 
-const startDefaultAnimations = ( ) => {
-  const defaultAnimations = [ 'Walking' ]
-  const availableAnimations = defaultAnimations.filter(name => actions[name])
+const onMouseLeave = () => {
+  isHovered = false
+}
+
+const playRandomHoverAnimation = () => {
+  if (!isHovered) return
   
-  if (availableAnimations.length > 0) {
-    const randomAnimation = availableAnimations[Math.floor(Math.random() * availableAnimations.length)]
-    
-    if (currentAction) currentAction.stop()
-    currentAction = actions[randomAnimation]
-    currentAction.reset()
-      .setLoop(THREE.LoopRepeat)
-      .setEffectiveTimeScale(props.animationSpeed)
-      .play()
+  const availableAnimations = hoverAnimations.filter(name => actions[name])
+  if (availableAnimations.length === 0) return
+  
+  const randomAnimation = availableAnimations[Math.floor(Math.random() * availableAnimations.length)]
+  playAnimation(randomAnimation, false)
+  currentAnimationType = 'hover'
+}
+
+const playGreetingAnimation = () => {
+  if (isHovered) return
+  
+  const availableGreetings = greetingAnimations.filter(name => actions[name])
+  if (availableGreetings.length === 0) return
+  
+  const randomGreeting = availableGreetings[Math.floor(Math.random() * availableGreetings.length)]
+  playAnimation(randomGreeting, false)
+  currentAnimationType = 'greeting'
+}
+
+const playAnimation = (animationName, loop = true) => {
+  if (!actions[animationName]) return
+  
+  if (currentAction) currentAction.stop()
+  
+  currentAction = actions[animationName]
+  currentAction.reset()
+    .setLoop(loop ? THREE.LoopRepeat : THREE.LoopOnce)
+    .setEffectiveTimeScale(loop ? props.animationSpeed : props.hoverSpeed)
+    .play()
+  
+  if (!loop) {
+    currentAction.clampWhenFinished = true
   }
+}
+
+const startDefaultAnimation = () => {
+  playAnimation(defaultAnimation, true)
+  currentAnimationType = 'default'
+}
+
+const onAnimationFinished = (event) => {
+  if (event.action !== currentAction) return
+  
+  if (isHovered && currentAnimationType === 'hover') {
+    // Si está en hover y terminó una animación hover, seguir con otra hover
+    playRandomHoverAnimation()
+  } else if (!isHovered && currentAnimationType === 'greeting') {
+    // Si terminó una animación de saludo, volver a walking
+    startDefaultAnimation()
+  } else if (!isHovered) {
+    // En cualquier otro caso sin hover, volver a default
+    startDefaultAnimation()
+  }
+}
+
+const startGreetingTimer = () => {
+  const randomInterval = (Math.random() * 60000) + 60000 // 1-2 minutos
+  
+  greetingTimer = setTimeout(() => {
+    if (!isHovered && currentAnimationType === 'default') {
+      playGreetingAnimation()
+    }
+    startGreetingTimer()
+  }, randomInterval)
 }
 
 const initThreeJS = () => {
@@ -123,17 +162,17 @@ const loadModel = () => {
       }
     })
     
-    console.log('Available animations:', gltf.animations.map(clip => clip.name))
-    
     if (gltf.animations && gltf.animations.length) {
       mixer = new THREE.AnimationMixer(model)
       
       gltf.animations.forEach((clip) => {
         actions[clip.name] = mixer.clipAction(clip)
-        actions[clip.name].setLoop(THREE.LoopOnce)
       })
       
-      startDefaultAnimations()
+      mixer.addEventListener('finished', onAnimationFinished)
+      
+      startDefaultAnimation()
+      startGreetingTimer()
     }
     
     const box = new THREE.Box3().setFromObject(model)
@@ -183,6 +222,14 @@ onMounted(() => {
 onUnmounted(() => {
   if (animationFrame) {
     cancelAnimationFrame(animationFrame)
+  }
+  
+  if (greetingTimer) {
+    clearTimeout(greetingTimer)
+  }
+  
+  if (mixer) {
+    mixer.removeEventListener('finished', onAnimationFinished)
   }
   
   if (renderer) {
