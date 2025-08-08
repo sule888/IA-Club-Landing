@@ -3,8 +3,6 @@
     ref="container" 
     :style="{ width: width, height: width }"
     class="robot-container"
-    @mouseenter="onMouseEnter"
-    @mouseleave="onMouseLeave"
   />
 </template>
 
@@ -20,11 +18,27 @@ const props = defineProps({
   },
   animationSpeed: {
     type: Number,
-    default: .34
+    default: .60
   },
   hoverSpeed: {
     type: Number,
-    default: .35
+    default: .60
+  },
+  mouseX: {
+    type: Number,
+    default: 0
+  },
+  mouseY: {
+    type: Number,
+    default: 0
+  },
+  isRotationHover: {
+    type: Boolean,
+    default: false
+  },
+  isAnimationHover: {
+    type: Boolean,
+    default: false
   }
 })
 
@@ -33,55 +47,79 @@ let scene, camera, renderer, mixer, model
 let currentAction = null
 let actions = {}
 let animationFrame = null
-const onMouseEnter = () => {
- const hoverAnimations = ["ThumbsUp", 'Dance', "Standing"]
- const availableAnimations = hoverAnimations.filter(name => actions[name])
- 
- if (availableAnimations.length === 0) return
- 
- const randomAnimation = availableAnimations[Math.floor(Math.random() * availableAnimations.length)]
- 
- if (currentAction) currentAction.stop()
- currentAction = actions[randomAnimation]
- currentAction.reset()
-   .setLoop(THREE.LoopOnce)
-   .setEffectiveTimeScale(props.hoverSpeed)
-   .play()
- 
- currentAction.clampWhenFinished = true
- 
- currentAction.getMixer().addEventListener('finished', () => {
-   const nextAnimation = availableAnimations.find(name => name !== randomAnimation)
-   if (nextAnimation) {
-     currentAction = actions[nextAnimation]
-     currentAction.reset()
-       .setLoop(THREE.LoopOnce)
-       .setEffectiveTimeScale(props.hoverSpeed)
-       .play()
-     currentAction.clampWhenFinished = true
-   }
- })
-}
-const onMouseLeave = () => {
-  setTimeout(() => {
-    startDefaultAnimations()
-  }, 500)
+let greetingTimer = null
+let currentAnimationType = 'default'
+let targetRotationY = 0
+let targetRotationX = 0
+
+const hoverAnimations = ["ThumbsUp", 'Dance']
+const greetingAnimations = ["Yes", "No"]
+const defaultAnimation = "Walking"
+
+const playRandomHoverAnimation = () => {
+  if (!props.isAnimationHover) return
+  
+  const availableAnimations = hoverAnimations.filter(name => actions[name])
+  if (availableAnimations.length === 0) return
+  
+  const randomAnimation = availableAnimations[Math.floor(Math.random() * availableAnimations.length)]
+  playAnimation(randomAnimation, false)
+  currentAnimationType = 'hover'
 }
 
-const startDefaultAnimations = ( ) => {
-  const defaultAnimations = [ 'Walking' ]
-  const availableAnimations = defaultAnimations.filter(name => actions[name])
+const playGreetingAnimation = () => {
+  if (props.isAnimationHover) return
   
-  if (availableAnimations.length > 0) {
-    const randomAnimation = availableAnimations[Math.floor(Math.random() * availableAnimations.length)]
-    
-    if (currentAction) currentAction.stop()
-    currentAction = actions[randomAnimation]
-    currentAction.reset()
-      .setLoop(THREE.LoopRepeat)
-      .setEffectiveTimeScale(props.animationSpeed)
-      .play()
+  const availableGreetings = greetingAnimations.filter(name => actions[name])
+  if (availableGreetings.length === 0) return
+  
+  const randomGreeting = availableGreetings[Math.floor(Math.random() * availableGreetings.length)]
+  playAnimation(randomGreeting, false)
+  currentAnimationType = 'greeting'
+}
+
+const playAnimation = (animationName, loop = true) => {
+  if (!actions[animationName]) return
+  
+  if (currentAction) currentAction.stop()
+  
+  currentAction = actions[animationName]
+  currentAction.reset()
+    .setLoop(loop ? THREE.LoopRepeat : THREE.LoopOnce)
+    .setEffectiveTimeScale(loop ? props.animationSpeed : props.hoverSpeed)
+    .play()
+  
+  if (!loop) {
+    currentAction.clampWhenFinished = true
   }
+}
+
+const startDefaultAnimation = () => {
+  playAnimation(defaultAnimation, true)
+  currentAnimationType = 'default'
+}
+
+const onAnimationFinished = (event) => {
+  if (event.action !== currentAction) return
+  
+  if (props.isAnimationHover && currentAnimationType === 'hover') {
+    playRandomHoverAnimation()
+  } else if (!props.isAnimationHover && currentAnimationType === 'greeting') {
+    startDefaultAnimation()
+  } else if (!props.isAnimationHover) {
+    startDefaultAnimation()
+  }
+}
+
+const startGreetingTimer = () => {
+  const randomInterval = (Math.random() * 60000) + 60000
+  
+  greetingTimer = setTimeout(() => {
+    if (!props.isAnimationHover && currentAnimationType === 'default') {
+      playGreetingAnimation()
+    }
+    startGreetingTimer()
+  }, randomInterval)
 }
 
 const initThreeJS = () => {
@@ -98,13 +136,17 @@ const initThreeJS = () => {
   renderer.shadowMap.enabled = true
   renderer.shadowMap.type = THREE.PCFSoftShadowMap
   
-  const ambientLight = new THREE.AmbientLight(0xffffff, 0.6)
+  const ambientLight = new THREE.AmbientLight(0xffffff, 0.8)
   scene.add(ambientLight)
   
-  const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8)
+  const directionalLight = new THREE.DirectionalLight(0xffffff, 1.0)
   directionalLight.position.set(10, 10, 5)
   directionalLight.castShadow = true
   scene.add(directionalLight)
+  
+  const frontLight = new THREE.DirectionalLight(0xffffff, 0.6)
+  frontLight.position.set(0, 5, 10)
+  scene.add(frontLight)
   
   container.value.appendChild(renderer.domElement)
 }
@@ -123,17 +165,17 @@ const loadModel = () => {
       }
     })
     
-    console.log('Available animations:', gltf.animations.map(clip => clip.name))
-    
     if (gltf.animations && gltf.animations.length) {
       mixer = new THREE.AnimationMixer(model)
       
       gltf.animations.forEach((clip) => {
         actions[clip.name] = mixer.clipAction(clip)
-        actions[clip.name].setLoop(THREE.LoopOnce)
       })
       
-      startDefaultAnimations()
+      mixer.addEventListener('finished', onAnimationFinished)
+      
+      startDefaultAnimation()
+      startGreetingTimer()
     }
     
     const box = new THREE.Box3().setFromObject(model)
@@ -143,7 +185,7 @@ const loadModel = () => {
     model.position.copy(center).multiplyScalar(-1)
     
     const maxDim = Math.max(size.x, size.y, size.z)
-    const distance = maxDim * 1.5
+    const distance = maxDim * 0.98
     
     camera.position.set(0, size.y * 0.2, distance)
     camera.lookAt(0, size.y * 0.1, 0)
@@ -154,6 +196,11 @@ const animate = () => {
   animationFrame = requestAnimationFrame(animate)
   
   if (mixer) mixer.update(0.016)
+  
+  if (model) {
+    model.rotation.y += (targetRotationY - model.rotation.y) * 0.1
+    model.rotation.x += (targetRotationX - model.rotation.x) * 0.1
+  }
   
   renderer.render(scene, camera)
 }
@@ -170,6 +217,26 @@ const updateSize = () => {
   renderer.setSize(size, size)
 }
 
+watch(() => props.isAnimationHover, (newIsAnimationHover) => {
+  if (newIsAnimationHover && currentAnimationType !== 'hover') {
+    playRandomHoverAnimation()
+  }
+})
+
+watch(() => props.isRotationHover, (newIsRotationHover) => {
+  if (!newIsRotationHover) {
+    targetRotationY = 0
+    targetRotationX = 0
+  }
+})
+
+watch([() => props.mouseX, () => props.mouseY], ([newMouseX, newMouseY]) => {
+  if (props.isRotationHover) {
+    targetRotationY = -newMouseX * 0.5
+    targetRotationX = newMouseY * 0.3
+  }
+})
+
 onMounted(() => {
   initThreeJS()
   loadModel()
@@ -183,6 +250,14 @@ onMounted(() => {
 onUnmounted(() => {
   if (animationFrame) {
     cancelAnimationFrame(animationFrame)
+  }
+  
+  if (greetingTimer) {
+    clearTimeout(greetingTimer)
+  }
+  
+  if (mixer) {
+    mixer.removeEventListener('finished', onAnimationFinished)
   }
   
   if (renderer) {
