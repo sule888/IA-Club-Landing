@@ -1,28 +1,45 @@
 <template>
-  <div class="wrapper">
+  <div 
+    class="wrapper"
+    @mousemove="onMouseMove"
+    @mouseenter="onMouseEnter"
+    @mouseleave="onMouseLeave"
+  >
     <!-- TÍTULO -->
     <h2 class="title">ESPACIOS DE PARTICIPACIÓN</h2>
 
-    <!-- Fila 1: texto 1 | robot | texto 2 -->
-    <div class="row first-row">
-      <div class="text-block">
-        <User class="icon" />
-        <p>
-          <strong>Estudiantes</strong><br />
-          Futuros líderes y agentes de cambio social
-        </p>
-      </div>
+    <div 
+      class="animation-zone"
+      @mouseenter="onAnimationZoneEnter"
+      @mouseleave="onAnimationZoneLeave"
+    >
+      <!-- Fila 1: texto 1 | robot | texto 2 -->
+      <div class="row first-row">
+        <div class="text-block">
+          <User class="icon" />
+          <p>
+            <strong>Estudiantes</strong><br />
+            Futuros líderes y agentes de cambio social
+          </p>
+        </div>
 
-      <div class="robot-container">
-        <Robot3D width="700px" />
-      </div>
+        <div class="robot-container">
+          <Robot3D 
+            width="700px" 
+            :mouse-x="mouseX"
+            :mouse-y="mouseY"
+            :is-rotation-hover="isRotationHover"
+            :is-animation-hover="isAnimationHover"
+          />
+        </div>
 
-      <div class="text-block">
-        <GraduationCap class="icon" />
-        <p>
-          <strong>Académicos</strong><br />
-          Promotores del conocimiento y la innovación educativa
-        </p>
+        <div class="text-block">
+          <GraduationCap class="icon" />
+          <p>
+            <strong>Académicos</strong><br />
+            Promotores del conocimiento y la innovación educativa
+          </p>
+        </div>
       </div>
     </div>
 
@@ -48,8 +65,42 @@
 </template>
 
 <script setup>
+import { ref } from 'vue'
 import Robot3D from './Robot3D.vue'
 import { User, GraduationCap, Globe, Briefcase } from 'lucide-vue-next'
+
+const mouseX = ref(0)
+const mouseY = ref(0)
+const isRotationHover = ref(false)
+const isAnimationHover = ref(false)
+
+const onMouseMove = (event) => {
+  const rect = event.currentTarget.getBoundingClientRect()
+  const centerX = rect.left + rect.width / 2
+  const centerY = rect.top + rect.height / 2
+  
+  mouseX.value = (event.clientX - centerX) / rect.width
+  mouseY.value = (event.clientY - centerY) / rect.height
+}
+
+const onMouseEnter = () => {
+  isRotationHover.value = true
+}
+
+const onMouseLeave = () => {
+  isRotationHover.value = false
+  isAnimationHover.value = false
+  mouseX.value = 0
+  mouseY.value = 0
+}
+
+const onAnimationZoneEnter = () => {
+  isAnimationHover.value = true
+}
+
+const onAnimationZoneLeave = () => {
+  isAnimationHover.value = false
+}
 </script>
 
 <style scoped>
@@ -69,6 +120,11 @@ import { User, GraduationCap, Globe, Briefcase } from 'lucide-vue-next'
   font-weight: bold;
   margin-bottom: 2.5rem;
   text-align: center;
+}
+
+.animation-zone {
+  width: 45%;
+  margin-bottom: 1.5rem;
 }
 
 .row {

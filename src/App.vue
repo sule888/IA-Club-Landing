@@ -7,7 +7,6 @@ import Hero from "./components/Hero.vue";
 import Information from "./components/Information.vue";
 import Lema from "./components/Lema.vue";
 import Publico from "./components/Publico.vue";
-import Robot3D from "./components/Robot3D.vue";
 import Roles from "./components/Roles.vue";
 import UbicacionHorario from "./components/UbicacionHorario.vue";
 </script>
