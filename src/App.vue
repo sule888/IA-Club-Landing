@@ -21,22 +21,24 @@ import UbicacionHorario from "./components/UbicacionHorario.vue";
     <Ejes />
     <div class="space"></div>
     <Lema />
-  <div class="space"></div>
-  
-
-   <div class="margin"> <Publico/> <Roles/></div>
-    <!-- <Robot3D width="700px" /> -->
+    <div class="space"></div>
+    
+    <div class="margin"> 
+      <Publico/> 
+      <Roles/>
+    </div>
     <div class="space"></div>
     <Contacts id="cronograma" />
-  <div class="space"></div>
+    <div class="space"></div>
 
     <div class="margin">
       <UbicacionHorario />
     </div>
-  <div class="space"></div>
+    <div class="space"></div>
     <Footer/>
   </div>
 </template>
+
 
 <style scoped>
 .margin {
@@ -45,9 +47,5 @@ import UbicacionHorario from "./components/UbicacionHorario.vue";
 
 .space {
   height: 200px;
-}
-
-html {
-  scroll-behavior: smooth;
 }
 </style>
