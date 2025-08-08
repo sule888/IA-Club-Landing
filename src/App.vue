@@ -8,6 +8,7 @@ import Information from "./components/Information.vue";
 import Lema from "./components/Lema.vue";
 import Publico from "./components/Publico.vue";
 import Robot3D from "./components/Robot3D.vue";
+import Roles from "./components/Roles.vue";
 import UbicacionHorario from "./components/UbicacionHorario.vue";
 </script>
 
@@ -21,8 +22,9 @@ import UbicacionHorario from "./components/UbicacionHorario.vue";
     <div class="space"></div>
     <Lema />
   <div class="space"></div>
+  
 
-   <div class="margin"> <Publico/></div>
+   <div class="margin"> <Publico/> <Roles/></div>
     <!-- <Robot3D width="700px" /> -->
     <div class="space"></div>
     <Contacts id="cronograma" />
