@@ -5,20 +5,20 @@
     </div>
     <div v-else class="countdown-container">
       <div class="countdown-item">
-        <div class="countdown-number">{{ countdown.days }}</div>
-        <div class="countdown-label">Días</div>
+        <div class="subtitles cont-number">{{ countdown.days }}</div>
+        <div class="normal-text">Días</div>
       </div>
       <div class="countdown-item">
-        <div class="countdown-number">{{ countdown.hours }}</div>
-        <div class="countdown-label">Horas</div>
+        <div class="subtitles cont-number">{{ countdown.hours }}</div>
+        <div class="normal-text">Horas</div>
       </div>
       <div class="countdown-item">
-        <div class="countdown-number">{{ countdown.minutes }}</div>
-        <div class="countdown-label">Minutos</div>
+        <div class="subtitles cont-number">{{ countdown.minutes }}</div>
+        <div class="normal-text">Minutos</div>
       </div>
       <div class="countdown-item">
-        <div class="countdown-number">{{ countdown.seconds }}</div>
-        <div class="countdown-label">Segundos</div>
+        <div class="subtitles cont-number">{{ countdown.seconds }}</div>
+        <div class="normal-text">Segundos</div>
       </div>
     </div>
   </div>
@@ -77,8 +77,7 @@ onBeforeUnmount(() => {
 <style scoped>
 .countdown-container {
   display: flex;
-  gap: 1.5rem;
-  margin-top: 3rem;
+  gap: 32px;
 }
 
 .countdown-item {
@@ -90,21 +89,9 @@ onBeforeUnmount(() => {
   min-width: 80px;
   box-shadow: 0 8px 25px rgba(176, 136, 222, 0.3);
 }
-
-.countdown-number {
-  font-size: 2.5rem;
+.cont-number{
   font-weight: bold;
-  line-height: 1;
 }
-
-.countdown-label {
-  font-size: 0.9rem;
-  margin-top: 0.5rem;
-  opacity: 0.9;
-}
-
-
-
 
 
 @media (max-width: 1200px) {
@@ -113,41 +100,27 @@ onBeforeUnmount(() => {
   }
 
   .countdown-item {
-    min-width: 70px;
+    min-width: 64px;
     padding: 1rem 0.8rem;
   }
 
-  .countdown-number {
-    font-size: 2rem;
-  }
 }
-
-@media (max-width: 850px) {
-  .countdown-container {
+@media (max-width: 950px) {
+.countdown-container {
     justify-content: center;
     flex-wrap: wrap;
   }
 }
 
-@media (max-width: 600px) {
-  .countdown-container {
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-}
-
-@media (max-width: 550px) {
+@media (max-width: 650px) {
   .countdown-item {
-    min-width: 60px;
+    min-width: 32px;
     padding: 0.8rem 0.6rem;
   }
 
-  .countdown-number {
-    font-size: 1.8rem;
-  }
-
-  .countdown-label {
-    font-size: 0.8rem;
+   .countdown-container {
+    justify-content: center;
+    flex-wrap: wrap;
   }
 }
 
@@ -178,7 +151,6 @@ onBeforeUnmount(() => {
 
 @media (max-width: 850px) {
  .mensaje-congreso {
-
   width: 100%;
 }
 

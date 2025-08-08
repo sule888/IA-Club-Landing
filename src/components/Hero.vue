@@ -7,9 +7,9 @@
     <div class="hero-content">
       <!-- Left Content -->
       <div class="hero-text">
-        <div class="hero-subtitle">CONGRESO INTERNACIONAL</div>
-        <h1 class="hero-title blinking-title">FRONTERAS INGENIERÍAS</h1>
-        <div class="hero-date">18 y 19 de Agosto 2025 </div>
+        <div class="hero-subtitle subtitles">CONGRESO INTERNACIONAL</div>
+        <h1 class="hero-title blinking-title titles">FRONTERAS INGENIERÍAS</h1>
+        <div class="hero-date subtitles text-main-color">18 y 19 de Septiembre 2025 </div>
 
         <!-- Countdown Timer -->
      <Count/>
@@ -29,11 +29,7 @@
             class="hero-img"
           />
 
-          <!-- Icons floating around image -->
-          <div class="icon gear-icon-1">⚙️</div>
-          <div class="icon gear-icon-2">🔧</div>
-          <div class="icon globe-icon">🌐</div>
-          <div class="icon graduation-icon">🎓</div>
+  
         </div>
       </div>
     </div>
@@ -57,35 +53,26 @@ import Navbar from "./NavBar/Navbar.vue";
 /* Hero Content */
 .hero-content {
   display: flex;
-  min-height: 85vh;
-  padding: 8rem 0 4rem;
+  min-height: 100vh;
   max-width: none;
-  margin: 0;
   align-items: center;
-  gap: 4rem;
   position: relative;
 }
 
 .hero-text {
   flex: 1;
-  z-index: 100;
-  padding: 0 4rem;
+  z-index: 2;
+  padding: 0 5%;
 }
 
 .hero-subtitle {
-  font-size: 1.2rem;
-  color: #666;
-  font-weight: 600;
-  margin-bottom: 1rem;
+  margin-bottom: 16px;
   letter-spacing: 2px;
 }
 
 .hero-title {
-  font-size: 68px;
-  font-weight: 900;
-  color: black;
   line-height: 1.1;
-  margin: 1rem 0;
+  margin: 32px 0;
 }
 .blinking-title {
  animation: blink 3.5s infinite;
@@ -97,14 +84,8 @@ import Navbar from "./NavBar/Navbar.vue";
 }
 
 .hero-date {
-  font-size: 1.3rem;
-  color: var(--main-color);
-  font-weight: 600;
-  margin: 2rem 0;
+  margin: 32px 0;
 }
-
-/* Countdown Styles */
-
 
 /* Hero Image */
 .hero-image-container {
@@ -136,190 +117,59 @@ import Navbar from "./NavBar/Navbar.vue";
   transform: rotate(22deg);
 }
 
-/* Icons */
-.icon {
-  position: absolute;
-  font-size: 2rem;
-  opacity: 0.8;
-  animation: float 3s ease-in-out infinite;
-}
-
-.gear-icon-1 {
-  top: 20px;
-  right: -30px;
-  animation-delay: 0s;
-}
-
-.gear-icon-2 {
-  bottom: 100px;
-  left: -40px;
-  animation-delay: 1s;
-}
-
-.globe-icon {
-  top: 50px;
-  left: -50px;
-  animation-delay: 2s;
-}
-
-.graduation-icon {
-  bottom: 50px;
-  right: -20px;
-  animation-delay: 1.5s;
-}
-
-@keyframes float {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-
-  50% {
-    transform: translateY(-10px);
-  }
-}
 
 /* Responsive Design */
-@media (max-width: 1000px) {
-  .hero-image-container {
-    height: 400px;
-  }
-}
-
 @media (max-width: 1200px) {
   .hero-content {
-    gap: 2rem;
-    padding: 6rem 0 2rem;
+     height: 400px;
+    gap: 32px;
   }
 
   .hero-text {
-    padding: 0 2rem;
+    padding: 0 5%;
   }
-
-  .hero-title {
-    font-size: 3rem;
-  }
-
   .hero-image-container {
-    width: 80%;
+    width: 70%;
     height: 110%;
     right: -20%;
   }
+  
 
-  .countdown-container {
-    gap: 1rem;
-  }
-
-  .countdown-item {
-    min-width: 70px;
-    padding: 1rem 0.8rem;
-  }
-
-  .countdown-number {
-    font-size: 2rem;
-  }
 }
 
-@media (max-width: 850px) {
-  .hero-image-container {
+@media (max-width: 950px) {
+  .hero-image{
     display: none;
   }
-
-  .countdown-container {
-    justify-content: center;
-    flex-wrap: wrap;
+  .hero-image-container {
+    display: none;
   }
 
   .hero-content {
     flex-direction: column;
     text-align: center;
-    padding: 6rem 0 2rem;
+    padding: 120px 5%;
   }
-
-  .hero-text {
-    padding: 0 1.5rem;
-  }
-
-  .hero-image-container {
-    position: relative;
-    top: 0;
-    right: 0;
-    width: 100%;
-    height: 300px;
-    order: -1;
-  }
-
-  .hero-img {
-    width: 100%;
-    height: 100%;
-    transform: rotate(0deg);
-  }
-}
-
-@media (max-width: 600px) {
-  .hero-image-container {
-    display: none;
-  }
-
-  .hero-img {
-    transform: rotate(0deg);
-    /* se puede dejar por seguridad */
-  }
-
-  .hero-title {
-    font-size: 2.5rem;
-  }
-
-  .countdown-container {
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-}
-
-@media (max-width: 550px) {
-  .desktop-nav {
-    display: none;
-  }
-
-  .mobile-menu-btn {
-    display: flex;
-  }
-
-  .navbar {
-    padding: 1rem;
-  }
-
-  .nav-links {
-    justify-content: center;
-  }
-
+ .hero-container,
   .hero-content {
-    padding: 5rem 0 2rem;
-  }
-
-  .hero-text {
-    padding: 0 1rem;
-  }
-
-  .hero-subtitle {
-    font-size: 1rem;
-  }
-
-  .hero-date {
-    font-size: 1.1rem;
-  }
-
-  .countdown-item {
-    min-width: 60px;
-    padding: 0.8rem 0.6rem;
-  }
-
-  .countdown-number {
-    font-size: 1.8rem;
-  }
-
-  .countdown-label {
-    font-size: 0.8rem;
+    min-height: auto;
+    height: auto;
   }
 }
+
+@media (max-width: 650px) {
+  .hero-image-container {
+    display: none;
+  }
+
+  .hero-img {
+    transform: rotate(0deg);
+  }
+  .hero-text {
+    padding: 0 5%;
+  }
+
+}
+
+
 </style>

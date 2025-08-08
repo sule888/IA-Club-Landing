@@ -15,6 +15,7 @@ import UbicacionHorario from "./components/UbicacionHorario.vue";
 <template>
   <div>
     <Hero />
+    <div class="space"></div>
     <div class="margin">
       <Information />
     </div>
@@ -47,5 +48,11 @@ import UbicacionHorario from "./components/UbicacionHorario.vue";
 
 .space {
   height: 200px;
+}
+
+@media (max-width: 950px) {
+.space {
+  height: 80px;
+}
 }
 </style>

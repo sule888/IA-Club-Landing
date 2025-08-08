@@ -38,3 +38,54 @@ html, body {
   --main-color: #4F9D8D;
   --sec-color:#b088de
 }
+
+
+
+
+.normal-text{
+  font-size: 16px
+}
+
+.subtitles{
+  font-size:32px ;
+}
+.titles{
+  font-size: 62px;
+  font-weight: bold;
+}
+
+.text-sec-color{
+  color: var(--sec-color);
+  font-weight: bold;
+}
+
+.text-main-color{
+  color: var(--main-color);
+  font-weight: bold;
+}
+
+
+@media (max-width: 1200px) {
+  .titles{
+    font-size: 54px;
+  }
+  .subtitles{
+    font-size: 24px;
+  }
+  .normal-text{
+  font-size: 14px
+}
+}
+
+
+@media (max-width: 650px) {
+  .titles{
+    font-size: 48px;
+  }
+  .subtitles{
+    font-size: 18px;
+  }
+  .normal-text{
+  font-size: 12px
+}
+}
