@@ -48,29 +48,29 @@ const onMouseLeave = () => {
 <style scoped>
 .nav-button {
   position: relative;
-  color: #333;
+  color: #4a5568;
   text-decoration: none;
-  font-weight: 600;
-  font-size: 1.1rem;
-  padding: 0.75rem 1.5rem;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  font-weight: 500;
+  font-size: 1rem;
+  padding: 0.6rem 1.2rem;
+  transition: all 0.3s cubic-bezier(0.2, 0, 0.2, 1);
   cursor: pointer;
-  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
-  border-radius: 12px;
+  border-radius: 8px;
   overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: transparent;
+  border: 1px solid transparent;
+  letter-spacing: 0.025em;
 }
 
 .nav-button:hover {
-  transform: translateY(-2px) scale(1.02);
-  box-shadow: 0 8px 25px rgba(79, 157, 141, 0.3);
-  background: rgba(79, 157, 141, 0.1);
-  border-color: rgba(79, 157, 141, 0.3);
+  transform: translateY(-1px);
+  color: #2d3748;
+  background: rgba(226, 232, 240, 0.5);
+  border-color: rgba(160, 174, 192, 0.3);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
 .nav-button-text {
@@ -80,9 +80,8 @@ const onMouseLeave = () => {
 }
 
 .text-active {
-  color: #d6e0de;
-  transform: scale(1.05);
-  text-shadow: 0 0 10px rgba(197, 211, 208, 0.5);
+  color: #2d3748;
+  font-weight: 600;
 }
 
 .nav-button-indicator {
@@ -91,14 +90,14 @@ const onMouseLeave = () => {
   left: 50%;
   transform: translateX(-50%);
   width: 0;
-  height: 3px;
-  background: linear-gradient(90deg, #c1cfcc, #66b3a3);
-  transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  border-radius: 2px;
+  height: 2px;
+  background: linear-gradient(90deg, #4a5568, #718096);
+  transition: width 0.3s cubic-bezier(0.2, 0, 0.2, 1);
+  border-radius: 1px;
 }
 
 .indicator-active {
-  width: 80%;
+  width: 70%;
 }
 
 .nav-button-glow {
@@ -107,10 +106,10 @@ const onMouseLeave = () => {
   left: 0;
   right: 0;
   bottom: 0;
-  background: radial-gradient(circle at center, rgba(235, 248, 247, 0.1) 0%, transparent 70%);
+  background: linear-gradient(135deg, rgba(226, 232, 240, 0.3) 0%, rgba(237, 242, 247, 0.1) 100%);
   opacity: 0;
   transition: opacity 0.3s ease;
-  border-radius: 12px;
+  border-radius: 8px;
 }
 
 .glow-active {
@@ -118,33 +117,38 @@ const onMouseLeave = () => {
 }
 
 .nav-button-mobile {
-  font-size: 1rem;
-  padding: 1rem;
-  margin-bottom: 0.5rem;
-  border-radius: 10px;
-  background: rgba(255, 255, 255, 0.05);
+  font-size: 0.95rem;
+  padding: 0.8rem 1rem;
+  margin-bottom: 0.3rem;
+  border-radius: 6px;
+  background: transparent;
+  justify-content: flex-start;
 }
 
 .nav-button-mobile:hover {
-  transform: translateX(8px) scale(1.02);
-  background: rgba(79, 157, 141, 0.15);
+  transform: translateX(4px);
+  background: rgba(237, 242, 247, 0.6);
+  border-color: rgba(203, 213, 224, 0.4);
 }
 
 .nav-button-mobile .nav-button-indicator {
-  height: 2px;
+  height: 100%;
+  width: 0;
   left: 0;
+  top: 0;
   transform: translateX(0);
-  border-radius: 0 2px 2px 0;
+  border-radius: 0 3px 3px 0;
+  background: linear-gradient(180deg, #4a5568, #718096);
 }
 
 .nav-button-mobile .indicator-active {
-  width: 4px;
-  height: 100%;
+  width: 3px;
 }
 
 @media (max-width: 680px) {
   .nav-button {
     justify-content: flex-start;
+    font-size: 0.95rem;
   }
 }
 </style>
