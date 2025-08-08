@@ -6,6 +6,7 @@ import Footer from "./components/Footer.vue";
 import Hero from "./components/Hero.vue";
 import Information from "./components/Information.vue";
 import Lema from "./components/Lema.vue";
+import MesasRedondas from "./components/MesasRedondas.vue";
 import Publico from "./components/Publico.vue";
 import Roles from "./components/Roles.vue";
 import UbicacionHorario from "./components/UbicacionHorario.vue";
@@ -22,25 +23,30 @@ import UbicacionHorario from "./components/UbicacionHorario.vue";
 
     <Ejes />
     <div class="space"></div>
-    
-    
-    <div class="margin"> 
-      <Publico/> 
-    <div class="space"></div>
 
-      <Roles/>
+
+    <div class="margin">
+      <Publico />
+      <div class="space"></div>
+
+      <Roles id="publico" />
     </div>
     <div class="space"></div>
     <Lema />
     <div class="space"></div>
-    <Contacts id="cronograma" />
+    <div class="margin">
+      <MesasRedondas />
+
+    </div>
+    <div class="space"></div>
+    <Contacts id="contactos" />
     <div class="space"></div>
 
     <div class="margin">
-      <UbicacionHorario />
+      <UbicacionHorario id="ubicacion" />
     </div>
     <div class="space"></div>
-    <Footer/>
+    <Footer />
   </div>
 </template>
 
@@ -55,8 +61,8 @@ import UbicacionHorario from "./components/UbicacionHorario.vue";
 }
 
 @media (max-width: 950px) {
-.space {
-  height: 80px;
-}
+  .space {
+    height: 120px;
+  }
 }
 </style>

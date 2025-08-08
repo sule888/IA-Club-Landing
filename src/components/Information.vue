@@ -48,7 +48,6 @@
   .information-cont {
     flex-direction: column;
     align-items: center;
-    text-align: center;
   }
 
   .info-title {

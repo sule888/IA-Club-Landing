@@ -27,12 +27,6 @@ html, body {
   width: 100%;
   min-height: 100vh;
 }
-.text-title {
-  font-size: 2rem;
-  font-weight: 700;
-}
-
-
 :root{
   --background-color:#eef1f3;
   --main-color: #4F9D8D;

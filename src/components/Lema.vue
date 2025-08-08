@@ -1,7 +1,13 @@
 <template>
   <section class="full-banner">
     <div class="lines"></div>
-    <h1 class="titles headline">Investigación para un mundo<br />conectado</h1>
+    <div class="main-cont">
+      <h1 class="titles headline">
+        Investigación para un mundo<br />conectado
+      </h1>
+      <div class="ejes-cont"></div>
+    </div>
+
     <div class="lines"></div>
   </section>
 </template>

@@ -61,16 +61,17 @@ const onMouseLeave = () => {
   align-items: center;
   justify-content: center;
   background: transparent;
-  border: 1px solid transparent;
+  /* border: 1px solid transparent; */
   letter-spacing: 0.025em;
 }
 
 .nav-button:hover {
   transform: translateY(-1px);
   color: #2d3748;
-  background: rgba(226, 232, 240, 0.5);
+  /* background: rgba(226, 232, 240, 0.5);
   border-color: rgba(160, 174, 192, 0.3);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); */
+  cursor: pointer;
 }
 
 .nav-button-text {
@@ -91,13 +92,13 @@ const onMouseLeave = () => {
   transform: translateX(-50%);
   width: 0;
   height: 2px;
-  background: linear-gradient(90deg, #4a5568, #718096);
+  background: var(--main-color);
   transition: width 0.3s cubic-bezier(0.2, 0, 0.2, 1);
   border-radius: 1px;
 }
 
 .indicator-active {
-  width: 70%;
+  width: 95%;
 }
 
 .nav-button-glow {

@@ -42,9 +42,10 @@ const mobileMenuOpen = ref(false);
 
 const navOptions = ref([
   { id: 'cronograma', label: 'Cronograma', section: 'cronograma' },
-  { id: 'informacion', label: 'Información', section: 'informacion' },
-  { id: 'ponentes', label: 'Ponentes', section: 'ponentes' },
-  { id: 'ubicacion', label: 'Ubicación', section: 'ubicacion' }
+  { id: 'contactos', label: 'Contactos', section: 'contactos' },
+  { id: 'publico', label: 'Participantes', section: 'publico' },
+   { id: 'mesaRedonda', label: 'Temas de mesas redondas', section: 'mesaRedonda' },
+  { id: 'ubicacion', label: 'Ubicación', section: 'ubicacion' },
 ]);
 
 function toggleMobileMenu() {
@@ -77,7 +78,7 @@ const handleMobileNavClick = (option) => {
   left: 0;
   right: 0;
   z-index: 9999;
-  background: rgba(255, 255, 255, 0.8);
+  /* background: rgba(255, 255, 255, 0.8); */
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   padding: 1rem 2rem;
@@ -111,7 +112,7 @@ const handleMobileNavClick = (option) => {
   position: absolute;
   right: 0;
   padding: 0.5rem;
-  z-index: 10001;
+  z-index: 2;
 }
 
 .mobile-menu-btn span {
@@ -162,7 +163,7 @@ const handleMobileNavClick = (option) => {
   opacity: 1;
 }
 
-@media (max-width: 680px) {
+@media (max-width: 850px) {
   .desktop-nav {
     display: none;
   }
