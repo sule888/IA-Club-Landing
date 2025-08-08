@@ -41,7 +41,7 @@
 </template>
 <script setup>
 import Count from "./Count.vue";
-import Navbar from "./Navbar.vue";
+import Navbar from "./NavBar/Navbar.vue";
 // Estado reactivo
 
 </script>
