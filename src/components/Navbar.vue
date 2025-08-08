@@ -79,15 +79,18 @@ const scrollToSection = (id) => {
 </script>
 
 <style scoped>
-/* Navbar Styles */
 .navbar {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  z-index: 1000;
-  background: rgba(255, 255, 255, 0.1);
+  z-index: 9999;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   padding: 1rem 2rem;
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .navbar-content {
@@ -108,13 +111,14 @@ const scrollToSection = (id) => {
 
 .nav-link {
   position: relative;
-  color: #000;
+  color: #333;
   text-decoration: none;
-  font-weight: 500;
+  font-weight: 600;
   font-size: 1.1rem;
   padding: 0.5rem 1rem;
   transition: all 0.3s ease;
   cursor: pointer;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
 }
 
 .nav-link::after {
@@ -122,19 +126,21 @@ const scrollToSection = (id) => {
   position: absolute;
   left: 0;
   bottom: 0;
-  /* asegúrate que no quede fuera del padding */
   width: 0;
   height: 2px;
   background-color: #4f9d8d;
-  /* o currentColor si quieres que tome el color del texto */
   transition: width 0.3s ease;
+}
+
+.nav-link:hover {
+  color: #4f9d8d;
+  transform: translateY(-1px);
 }
 
 .nav-link:hover::after {
   width: 100%;
 }
 
-/* Mobile Menu */
 .mobile-menu-btn {
   display: none;
   flex-direction: column;
@@ -143,14 +149,16 @@ const scrollToSection = (id) => {
   cursor: pointer;
   position: absolute;
   right: 0;
+  padding: 0.5rem;
 }
 
 .mobile-menu-btn span {
   width: 25px;
   height: 3px;
-  background: #000;
+  background: #333;
   margin: 3px 0;
   transition: 0.3s;
+  border-radius: 2px;
 }
 
 .mobile-nav {
@@ -160,9 +168,13 @@ const scrollToSection = (id) => {
   left: 0;
   right: 0;
   background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
   padding: 1rem;
   border-radius: 0 0 15px 15px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-top: none;
 }
 
 .mobile-nav-open {
@@ -171,16 +183,25 @@ const scrollToSection = (id) => {
 
 .mobile-nav-link {
   display: block;
-  color: #000;
+  color: #333;
   text-decoration: none;
+  font-weight: 500;
   padding: 1rem;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
+  border-radius: 8px;
+  margin-bottom: 0.5rem;
+}
+
+.mobile-nav-link:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
 }
 
 .mobile-nav-link:hover {
-  background: rgba(79, 157, 141, 0.1);
+  background: rgba(79, 157, 141, 0.15);
   color: #4f9d8d;
+  transform: translateX(5px);
 }
 
 @media (max-width: 680px) {

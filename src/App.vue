@@ -33,6 +33,7 @@ import UbicacionHorario from "./components/UbicacionHorario.vue";
     </div>
   <div class="space"></div>
     <Footer />
+    
   </div>
 </template>
 
