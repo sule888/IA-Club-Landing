@@ -5,60 +5,47 @@
     @mouseenter="onMouseEnter"
     @mouseleave="onMouseLeave"
   >
-    <!-- TÍTULO -->
     <h2 class="title">ESPACIOS DE PARTICIPACIÓN</h2>
 
-    <div 
-      class="animation-zone"
-      @mouseenter="onAnimationZoneEnter"
-      @mouseleave="onAnimationZoneLeave"
-    >
-      <!-- Fila 1: texto 1 | robot | texto 2 -->
-      <div class="row first-row">
-        <div class="text-block">
+    <div class="main-content">
+      <div 
+        class="robot-section"
+        @mouseenter="onAnimationZoneEnter"
+        @mouseleave="onAnimationZoneLeave"
+      >
+        <Robot3D 
+          width="100%" 
+          :mouse-x="mouseX"
+          :mouse-y="mouseY"
+          :is-rotation-hover="isRotationHover"
+          :is-animation-hover="isAnimationHover"
+        />
+      </div>
+
+      <div class="items-grid">
+        <div class="item-card">
           <User class="icon" />
-          <p>
-            <strong>Estudiantes</strong><br />
-            Futuros líderes y agentes de cambio social
-          </p>
+          <h3>Estudiantes</h3>
+          <p>Futuros líderes y agentes de cambio social</p>
         </div>
 
-        <div class="robot-container">
-          <Robot3D 
-            width="700px" 
-            :mouse-x="mouseX"
-            :mouse-y="mouseY"
-            :is-rotation-hover="isRotationHover"
-            :is-animation-hover="isAnimationHover"
-          />
-        </div>
-
-        <div class="text-block">
+        <div class="item-card">
           <GraduationCap class="icon" />
-          <p>
-            <strong>Académicos</strong><br />
-            Promotores del conocimiento y la innovación educativa
-          </p>
+          <h3>Académicos</h3>
+          <p>Promotores del conocimiento y la innovación educativa</p>
         </div>
-      </div>
-    </div>
 
-    <!-- Fila 2: texto 3 | texto 4 -->
-    <div class="row second-row">
-      <div class="text-block">
-        <Globe class="icon" />
-        <p>
-          <strong>Sociedad</strong><br />
-          Contexto cultural y social para el desarrollo humano
-        </p>
-      </div>
+        <div class="item-card">
+          <Globe class="icon" />
+          <h3>Sociedad</h3>
+          <p>Contexto cultural y social para el desarrollo humano</p>
+        </div>
 
-      <div class="text-block">
-        <Briefcase class="icon" />
-        <p>
-          <strong>Empresarios</strong><br />
-          Impulsores del crecimiento económico y oportunidades laborales
-        </p>
+        <div class="item-card">
+          <Briefcase class="icon" />
+          <h3>Empresarios</h3>
+          <p>Impulsores del crecimiento económico y oportunidades laborales</p>
+        </div>
       </div>
     </div>
   </div>
@@ -106,121 +93,211 @@ const onAnimationZoneLeave = () => {
 <style scoped>
 .wrapper {
   width: 100%;
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
-  padding: 2rem 1.5rem;
+  padding: 1rem;
   box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 }
 
 .title {
-  font-size: 2rem;
+  font-size: clamp(1.25rem, 4vw, 2rem);
   font-weight: bold;
-  margin-bottom: 2.5rem;
+  margin-bottom: 2rem;
   text-align: center;
 }
 
-.animation-zone {
-  width: 45%;
-  margin-bottom: 1.5rem;
-}
-
-.row {
+.main-content {
   display: flex;
-  justify-content: center;
+  gap: 2rem;
   align-items: center;
-  gap: 3rem;
-  flex-wrap: wrap;
+  justify-content: space-between;
 }
 
-.first-row {
-  margin-bottom: 2.5rem;
-  flex-wrap: nowrap;
+.items-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  flex: 1;
+  max-width: 600px;
 }
 
-.second-row {
-  flex-wrap: nowrap;
-  gap: 4rem;
-}
-
-.robot-container {
-  flex-shrink: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  max-width: 500px;
-  width: 100%;
-  height: 700px;
-}
-
-.text-block {
-  max-width: 240px;
+.item-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 1.5rem;
   text-align: center;
-  font-size: 1.1rem;
-  font-weight: 400;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
 }
 
-.text-block strong {
-  display: block;
-  font-weight: 700;
-  margin-bottom: 0.5rem;
+.item-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
 }
 
 .icon {
-  width: 40px;
-  height: 40px;
-  margin-bottom: 0.5rem;
+  width: 36px;
+  height: 36px;
+  margin: 0 auto 1rem;
   color: #6b7280;
+  transition: color 0.3s ease;
 }
 
-/* Medium screens: tablet */
+.item-card:hover .icon {
+  color: #3b82f6;
+}
+
+.item-card h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin: 0 0 0.75rem 0;
+  color: #1f2937;
+}
+
+.item-card p {
+  font-size: 0.9rem;
+  line-height: 1.4;
+  color: #6b7280;
+  margin: 0;
+}
+
+.robot-section {
+  flex: 0 0 400px;
+  height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 @media (max-width: 1024px) {
-  .first-row {
+  .main-content {
     flex-direction: column;
-    align-items: center;
     gap: 2rem;
   }
-
-  .second-row {
-    flex-direction: column;
-    align-items: center;
-    gap: 2rem;
+  
+  .items-grid {
+    max-width: 100%;
+    grid-template-columns: 1fr 1fr;
   }
-
-  .robot-container {
-    transform: scale(0.9);
-    margin: 1rem 0;
-    height: 500px;
-    width: 500px;
-  }
-
-  .text-block {
-    max-width: 300px;
+  
+  .robot-section {
+    flex: none;
+    width: 100%;
+    height: 400px;
   }
 }
 
-/* Small screens: mobile */
-@media (max-width: 640px) {
+@media (max-width: 768px) {
+  .wrapper {
+    padding: 0.75rem;
+  }
+  
   .title {
-    font-size: 1.5rem;
     margin-bottom: 1.5rem;
   }
-
-  .icon {
-    width: 32px;
-    height: 32px;
+  
+  .main-content {
+    gap: 1.5rem;
   }
-
-  .text-block {
+  
+  .items-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .item-card {
+    padding: 1.25rem;
+  }
+  
+  .item-card h3 {
     font-size: 1rem;
-    max-width: 90%;
   }
-
-  .robot-container {
-    margin: 1.5rem 0;
-    padding: 0 1rem;
+  
+  .item-card p {
+    font-size: 0.85rem;
+  }
+  
+  .robot-section {
+    height: 300px;
   }
 }
-</style>
+
+@media (max-width: 480px) {
+  .wrapper {
+    padding: 0.5rem;
+  }
+  
+  .title {
+    margin-bottom: 1rem;
+  }
+  
+  .items-grid {
+    gap: 0.75rem;
+  }
+  
+  .item-card {
+    padding: 1rem;
+  }
+  
+  .icon {
+    width: 28px;
+    height: 28px;
+    margin-bottom: 0.75rem;
+  }
+  
+  .item-card h3 {
+    font-size: 0.95rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .item-card p {
+    font-size: 0.8rem;
+    line-height: 1.3;
+  }
+  
+  .robot-section {
+    height: 250px;
+  }
+}
+
+@media (max-width: 320px) {
+  .wrapper {
+    padding: 0.25rem;
+  }
+  
+  .title {
+    font-size: 1.1rem;
+    margin-bottom: 0.75rem;
+  }
+  
+  .items-grid {
+    gap: 0.5rem;
+  }
+  
+  .item-card {
+    padding: 0.75rem;
+  }
+  
+  .icon {
+    width: 24px;
+    height: 24px;
+    margin-bottom: 0.5rem;
+  }
+  
+  .item-card h3 {
+    font-size: 0.9rem;
+    margin-bottom: 0.4rem;
+  }
+  
+  .item-card p {
+    font-size: 0.75rem;
+    line-height: 1.2;
+  }
+  
+  .robot-section {
+    height: 200px;
+  }
+  
+}</style>

@@ -185,7 +185,7 @@ const loadModel = () => {
     model.position.copy(center).multiplyScalar(-1)
     
     const maxDim = Math.max(size.x, size.y, size.z)
-    const distance = maxDim * 1.5
+    const distance = maxDim * 0.98
     
     camera.position.set(0, size.y * 0.2, distance)
     camera.lookAt(0, size.y * 0.1, 0)
