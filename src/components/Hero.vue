@@ -8,7 +8,7 @@
       <!-- Left Content -->
       <div class="hero-text">
         <div class="hero-subtitle subtitles">CONGRESO INTERNACIONAL</div>
-        <h1 class="hero-title blinking-title titles">FRONTERAS INGENIERÍAS</h1>
+        <h1 class="hero-title blinking-title title-hero">FRONTERAS INGENIERÍAS</h1>
         <div class="hero-date subtitles text-main-color">18 y 19 de Septiembre 2025 </div>
 
         <!-- Countdown Timer -->
@@ -167,6 +167,10 @@ import Navbar from "./NavBar/Navbar.vue";
   }
   .hero-text {
     padding: 0 5%;
+  }
+   .hero-content {
+
+    padding: 64px 5%;
   }
 
 }

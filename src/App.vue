@@ -18,15 +18,20 @@ import UbicacionHorario from "./components/UbicacionHorario.vue";
     <div class="margin">
       <Information />
     </div>
+    <div class="space"></div>
+
     <Ejes />
     <div class="space"></div>
-    <Lema />
-    <div class="space"></div>
+    
     
     <div class="margin"> 
       <Publico/> 
+    <div class="space"></div>
+
       <Roles/>
     </div>
+    <div class="space"></div>
+    <Lema />
     <div class="space"></div>
     <Contacts id="cronograma" />
     <div class="space"></div>

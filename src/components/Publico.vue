@@ -1,11 +1,11 @@
 <template>
   <div 
-    class="wrapper"
+    
     @mousemove="onMouseMove"
     @mouseenter="onMouseEnter"
     @mouseleave="onMouseLeave"
   >
-    <h2 class="title">ESPACIOS DE PARTICIPACIÓN</h2>
+    <h2 class="titles">ESPACIOS DE PARTICIPACIÓN</h2>
 
     <div class="main-content">
       <div 
@@ -14,7 +14,7 @@
         @mouseleave="onAnimationZoneLeave"
       >
         <Robot3D 
-          width="100%" 
+          width="500px" 
           :mouse-x="mouseX"
           :mouse-y="mouseY"
           :is-rotation-hover="isRotationHover"
@@ -25,26 +25,26 @@
       <div class="items-grid">
         <div class="item-card">
           <User class="icon" />
-          <h3>Estudiantes</h3>
-          <p>Futuros líderes y agentes de cambio social</p>
+          <h1 class="subtitles">Estudiantes</h1>
+          <p class="normal-text">Futuros líderes y agentes de cambio social</p>
         </div>
 
         <div class="item-card">
           <GraduationCap class="icon" />
-          <h3>Académicos</h3>
-          <p>Promotores del conocimiento y la innovación educativa</p>
+          <h1 class="subtitles">Académicos</h1>
+          <p class="normal-text">Promotores del conocimiento y la innovación educativa</p>
         </div>
 
         <div class="item-card">
           <Globe class="icon" />
-          <h3>Sociedad</h3>
-          <p>Contexto cultural y social para el desarrollo humano</p>
+          <h1 class="subtitles">Sociedad</h1>
+          <p class="normal-text">Contexto cultural y social para el desarrollo humano</p>
         </div>
 
         <div class="item-card">
           <Briefcase class="icon" />
-          <h3>Empresarios</h3>
-          <p>Impulsores del crecimiento económico y oportunidades laborales</p>
+          <h1 class="subtitles">Empresarios</h1>
+          <p class="normal-text">Impulsores del crecimiento económico y oportunidades laborales</p>
         </div>
       </div>
     </div>
@@ -91,14 +91,9 @@ const onAnimationZoneLeave = () => {
 </script>
 
 <style scoped>
-.wrapper {
-  width: 100%;
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 1rem;
-  box-sizing: border-box;
+h1{
+  margin-bottom: 16px;
 }
-
 .title {
   font-size: clamp(1.25rem, 4vw, 2rem);
   font-weight: bold;
@@ -108,24 +103,31 @@ const onAnimationZoneLeave = () => {
 
 .main-content {
   display: flex;
-  gap: 2rem;
+  gap: 32px;
   align-items: center;
   justify-content: space-between;
 }
-
+.robot-section {
+  /* responsive */
+  flex: 0 0 400px;
+  height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .items-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 1.5rem;
+  gap: 24px;
   flex: 1;
-  max-width: 600px;
+  max-width: 900px;
 }
 
 .item-card {
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 12px;
-  padding: 1.5rem;
+  padding: 24px;
   text-align: center;
   transition: all 0.3s ease;
   backdrop-filter: blur(10px);
@@ -138,40 +140,19 @@ const onAnimationZoneLeave = () => {
 }
 
 .icon {
-  width: 36px;
-  height: 36px;
+  width:48px;
+  height:64px;
   margin: 0 auto 1rem;
   color: #6b7280;
   transition: color 0.3s ease;
 }
 
 .item-card:hover .icon {
-  color: #3b82f6;
+  color: var(--sec-color);
 }
 
-.item-card h3 {
-  font-size: 1.1rem;
-  font-weight: 700;
-  margin: 0 0 0.75rem 0;
-  color: #1f2937;
-}
 
-.item-card p {
-  font-size: 0.9rem;
-  line-height: 1.4;
-  color: #6b7280;
-  margin: 0;
-}
-
-.robot-section {
-  flex: 0 0 400px;
-  height: 500px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-@media (max-width: 1024px) {
+@media (max-width: 1200px) {
   .main-content {
     flex-direction: column;
     gap: 2rem;
@@ -189,115 +170,14 @@ const onAnimationZoneLeave = () => {
   }
 }
 
-@media (max-width: 768px) {
-  .wrapper {
-    padding: 0.75rem;
-  }
-  
-  .title {
-    margin-bottom: 1.5rem;
-  }
-  
-  .main-content {
-    gap: 1.5rem;
-  }
-  
+@media (max-width: 650px) {
   .items-grid {
     grid-template-columns: 1fr;
-    gap: 1rem;
-  }
-  
-  .item-card {
-    padding: 1.25rem;
-  }
-  
-  .item-card h3 {
-    font-size: 1rem;
-  }
-  
-  .item-card p {
-    font-size: 0.85rem;
   }
   
   .robot-section {
-    height: 300px;
+    height: 550px;
   }
 }
 
-@media (max-width: 480px) {
-  .wrapper {
-    padding: 0.5rem;
-  }
-  
-  .title {
-    margin-bottom: 1rem;
-  }
-  
-  .items-grid {
-    gap: 0.75rem;
-  }
-  
-  .item-card {
-    padding: 1rem;
-  }
-  
-  .icon {
-    width: 28px;
-    height: 28px;
-    margin-bottom: 0.75rem;
-  }
-  
-  .item-card h3 {
-    font-size: 0.95rem;
-    margin-bottom: 0.5rem;
-  }
-  
-  .item-card p {
-    font-size: 0.8rem;
-    line-height: 1.3;
-  }
-  
-  .robot-section {
-    height: 250px;
-  }
-}
-
-@media (max-width: 320px) {
-  .wrapper {
-    padding: 0.25rem;
-  }
-  
-  .title {
-    font-size: 1.1rem;
-    margin-bottom: 0.75rem;
-  }
-  
-  .items-grid {
-    gap: 0.5rem;
-  }
-  
-  .item-card {
-    padding: 0.75rem;
-  }
-  
-  .icon {
-    width: 24px;
-    height: 24px;
-    margin-bottom: 0.5rem;
-  }
-  
-  .item-card h3 {
-    font-size: 0.9rem;
-    margin-bottom: 0.4rem;
-  }
-  
-  .item-card p {
-    font-size: 0.75rem;
-    line-height: 1.2;
-  }
-  
-  .robot-section {
-    height: 200px;
-  }
-  
-}</style>
+</style>

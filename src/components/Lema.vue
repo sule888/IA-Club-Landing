@@ -1,7 +1,7 @@
 <template>
   <section class="full-banner">
     <div class="lines"></div>
-    <h1 class="headline">Investigación para un mundo<br />conectado</h1>
+    <h1 class="titles headline">Investigación para un mundo<br />conectado</h1>
     <div class="lines"></div>
   </section>
 </template>
@@ -15,8 +15,6 @@
 }
 
 .headline {
-  font-size: 3rem;
-  font-weight: bold;
   text-align: center;
   color: #000;
   line-height: 1.3;

@@ -49,8 +49,13 @@ html, body {
 .subtitles{
   font-size:32px ;
 }
-.titles{
+
+.title-hero{
   font-size: 62px;
+  font-weight: bold;
+}
+.titles{
+  font-size: 54px;
   font-weight: bold;
 }
 
@@ -66,8 +71,12 @@ html, body {
 
 
 @media (max-width: 1200px) {
+  .title-hero{
+  font-size: 54px;
+  font-weight: bold;
+}
   .titles{
-    font-size: 54px;
+    font-size: 48px;
   }
   .subtitles{
     font-size: 24px;
@@ -79,8 +88,12 @@ html, body {
 
 
 @media (max-width: 650px) {
+  .title-hero{
+  font-size: 48px;
+  font-weight: bold;
+}
   .titles{
-    font-size: 48px;
+    font-size: 36px;
   }
   .subtitles{
     font-size: 18px;
