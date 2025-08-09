@@ -15,12 +15,12 @@
     <div class="info-section" data-aos="fade-left">
   <div class="info-item">
     <Calendar class="icon" />
-    <span class="text">7, 8 y 9 de Octubre de 2025</span>
+    <span class="normal-text">7, 8 y 9 de Octubre de 2025</span>
   </div>
 
   <div class="info-item">
     <MapPin class="icon" />
-    <span class="text">
+    <span class="normal-text">            
       Instituto de Ingeniería y Tecnología, Juárez, Chihuahua
     </span>
   </div>
@@ -36,16 +36,14 @@ import { Calendar, MapPin } from 'lucide-vue-next'
 </script>
 
 <style scoped>
-/* Layout */
 .info-container {
   display: flex;
   flex-direction: row;
   align-items: stretch;
   justify-content: space-between;
-  overflow: hidden;
+  overflow: visible;
   gap: 72px;
 }
-
 /* Responsivo */
 @media (max-width: 768px) {
   .info-container {
@@ -75,7 +73,6 @@ import { Calendar, MapPin } from 'lucide-vue-next'
 .info-item {
   display: flex;
   align-items: center;
-  margin-bottom: 1rem;
   gap: 48px;
 }
 
@@ -85,21 +82,4 @@ import { Calendar, MapPin } from 'lucide-vue-next'
   width: 72px;
 }
 
-.text {
-  font-size: 1rem;
-}
-
-/* Link PDF */
-.pdf-link a {
-  color: var(--main-color);
-  font-weight: bold;
-  text-decoration: underline;
-  text-underline-offset: 4px;
-}
-
-.pdf-message {
-  font-size: 0.9rem;
-  color: #888;
-  margin-top: 1rem;
-}
 </style>

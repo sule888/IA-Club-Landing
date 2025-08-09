@@ -62,7 +62,14 @@ html, body {
   color: var(--main-color);
   font-weight: bold;
 }
-
+.link{
+  text-decoration: underline;
+   word-break: break-word;
+     display: inline-block;
+}
+.link:hover{
+  cursor: pointer;
+}
 
 @media (max-width: 1200px) {
   .title-hero{

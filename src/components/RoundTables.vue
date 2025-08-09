@@ -1,7 +1,7 @@
 <template>
   <section class="mesas-section">
-    <div class="section-header">
-      <h2 class="titles text-main-color"> Temas de Mesas Redondas</h2>
+    <div>
+      <h2 class="titles" style="margin-bottom: 16px;"> Temas de Mesas Redondas</h2>
       <p class="normal-text">
         Espacios de diálogo y colaboración para explorar los desafíos y
         oportunidades en el ámbito industrial, educativo y tecnológico de la
@@ -115,11 +115,6 @@
   gap: 60px;
 }
 
-.section-header {
-  text-align: center;
-  max-width: 900px;
-  margin: 0 auto;
-}
 
 .mesa-item {
   display: flex;

@@ -13,7 +13,7 @@
         <div class="contact-card" v-for="(contact, index) in contacts" :key="index">
           <h3 class="normal-text text-sec-color">{{ contact.name }}</h3>
           <p class="contact-role normal-text">{{ contact.role }}</p>
-          <a class="contact-email normal-text text-main-color" :href="`mailto:${contact.email}`">
+          <a class="link normal-text text-main-color" :href="`mailto:${contact.email}`">
             {{ contact.email }}
           </a>
         </div>
@@ -25,6 +25,12 @@
 
 <script setup>
 const contacts = [
+  {
+    name: "Dra. Manuela Alejandra Zalapa Garibay",
+    role: "Coordinadora de la Carrera de Ingeniería Mecánica ",
+    email: "manuela.zalapa@uacj.mx "
+    
+  },
   {
     name: "Dr. Roberto Romero López",
     role: "Jefe del Departamento de Ingeniería Industrial y Manufactura",
@@ -90,7 +96,7 @@ const contacts = [
 
 .contact-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 32px;
 }
 
@@ -117,9 +123,4 @@ const contacts = [
   margin-bottom: 1rem;
 }
 
-.contact-email {
-
-  text-decoration: underline;
-  text-underline-offset: 4px;
-}
 </style>

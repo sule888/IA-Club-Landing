@@ -1,55 +1,51 @@
 <script setup>
 import Contacts from "./components/Contacts.vue";
-import Cronograma from "./components/Cronograma.vue";
-import Ejes from "./components/Ejes.vue";
+import Axes from "./components/Axes.vue";
 import Footer from "./components/Footer.vue";
 import Hero from "./components/Hero.vue";
 import Information from "./components/Information.vue";
 import Lema from "./components/Lema.vue";
-import MesasRedondas from "./components/MesasRedondas.vue";
-import Publico from "./components/Publico.vue";
-import Roles from "./components/Roles.vue";
-import UbicacionHorario from "./components/UbicacionHorario.vue";
+import RoundTables from "./components/RoundTables.vue";
+import Public  from "./components/Public.vue";
+import Rols from "./components/Rols.vue";
+import Schedule from "./components/Schedule.vue";
+import UbcationSchedule from "./components/UbcationSchedule.vue";
 </script>
 
 <template>
   <div>
-    <Hero />
+    <Hero id="hero" />
     <div class="space"></div>
     <div class="margin">
       <Information />
+      <div class="space" id="cronograma"></div>
+      <Schedule />
     </div>
     <div class="space"></div>
-
-    <Ejes />
+    <Axes />
     <div class="space"></div>
-
-
     <div class="margin">
-      <Publico />
-      <div class="space"></div>
-
-      <Roles id="publico" />
+      <Public  />
+      <div class="space" id="publico"></div>
+      <Rols  />
     </div>
     <div class="space"></div>
     <Lema />
-    <div class="space"></div>
+    <div class="space" id="mesaRedonda" ></div>
     <div class="margin">
-      <MesasRedondas />
-
+      <RoundTables />
     </div>
-    <div class="space"></div>
-    <Contacts id="contactos" />
-    <div class="space"></div>
+    <div class="space" id="contactos" ></div>
+    <Contacts  />
 
+    <div class="space" id="ubicacion" ></div>
     <div class="margin">
-      <UbicacionHorario id="ubicacion" />
+      <UbcationSchedule />
     </div>
     <div class="space"></div>
     <Footer />
   </div>
 </template>
-
 
 <style scoped>
 .margin {
@@ -57,7 +53,7 @@ import UbicacionHorario from "./components/UbicacionHorario.vue";
 }
 
 .space {
-  height: 200px;
+  height: 128px;
 }
 
 @media (max-width: 950px) {

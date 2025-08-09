@@ -63,6 +63,7 @@ import Navbar from "./NavBar/Navbar.vue";
   flex: 1;
   z-index: 2;
   padding: 0 5%;
+  margin-top: 100px;
 }
 
 .hero-subtitle {
@@ -134,6 +135,9 @@ import Navbar from "./NavBar/Navbar.vue";
     right: -20%;
   }
   
+.hero-text {
+  margin-top: 0px;
+}
 
 }
 
@@ -172,6 +176,9 @@ import Navbar from "./NavBar/Navbar.vue";
 
     padding: 64px 5%;
   }
+  .hero-text {
+  margin-top: 54px;
+}
 
 }
 

@@ -5,7 +5,7 @@
     @mouseenter="onMouseEnter"
     @mouseleave="onMouseLeave"
   >
-    <h2 class="titles">ESPACIOS DE PARTICIPACIÓN</h2>
+    <h2 class="titles">Espacios de participacion</h2>
 
     <div class="main-content">
       <div 

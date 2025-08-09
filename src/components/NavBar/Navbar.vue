@@ -2,14 +2,16 @@
   <div>
     <nav class="navbar">
       <div class="navbar-content">
+        <!-- Logo solo en escritorio -->
+        <div class="logo-container desktop-only">
+          <a @click.prevent="scrollToHero">
+            <img src="/src/assets/img/logos/logo uacj.png" alt="Logo UACJ" class="logo-img" />
+          </a>
+        </div>
+
         <!-- Desktop Menu -->
         <div class="nav-links desktop-nav">
-          <NavButton
-            v-for="option in navOptions"
-            :key="option.id"
-            :option="option"
-            @click="handleNavClick"
-          />
+          <NavButton v-for="option in navOptions" :key="option.id" :option="option" @click="handleNavClick" />
         </div>
 
         <!-- Mobile Menu Button -->
@@ -21,13 +23,8 @@
 
         <!-- Mobile Menu -->
         <div class="mobile-nav" :class="{ 'mobile-nav-open': mobileMenuOpen }">
-          <NavButton
-            v-for="option in navOptions"
-            :key="`mobile-${option.id}`"
-            :option="option"
-            :is-mobile="true"
-            @click="handleMobileNavClick"
-          />
+          <NavButton v-for="option in navOptions" :key="`mobile-${option.id}`" :option="option" :is-mobile="true"
+            @click="handleMobileNavClick" />
         </div>
       </div>
     </nav>
@@ -42,12 +39,17 @@ const mobileMenuOpen = ref(false);
 
 const navOptions = ref([
   { id: 'cronograma', label: 'Cronograma', section: 'cronograma' },
-  { id: 'contactos', label: 'Contactos', section: 'contactos' },
   { id: 'publico', label: 'Participantes', section: 'publico' },
-   { id: 'mesaRedonda', label: 'Temas de mesas redondas', section: 'mesaRedonda' },
+  { id: 'mesaRedonda', label: 'Temas de mesas redondas', section: 'mesaRedonda' },
+  { id: 'contactos', label: 'Contactos', section: 'contactos' },
   { id: 'ubicacion', label: 'Ubicación', section: 'ubicacion' },
 ]);
-
+const scrollToHero = () => {
+  const section = document.getElementById('hero')
+  if (section) {
+    section.scrollIntoView({ behavior: 'smooth' })
+  }
+}
 function toggleMobileMenu() {
   mobileMenuOpen.value = !mobileMenuOpen.value;
 }
@@ -78,31 +80,42 @@ const handleMobileNavClick = (option) => {
   left: 0;
   right: 0;
   z-index: 9999;
-  /* background: rgba(255, 255, 255, 0.8); */
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   padding: 1rem 2rem;
   box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 32px 0;
+
 }
 
 .navbar-content {
   max-width: 1200px;
   margin: 0 auto;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   position: relative;
 }
 
-.nav-links {
+/* Logo solo escritorio */
+.logo-container {
   display: flex;
-  gap: 2rem;
-  width: 100%;
-  justify-content: space-evenly;
   align-items: center;
 }
 
+.logo-img {
+  height: 50px;
+  width: auto;
+}
+
+/* Menu escritorio */
+.nav-links {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+/* Botón menú móvil */
 .mobile-menu-btn {
   display: none;
   flex-direction: column;
@@ -111,14 +124,14 @@ const handleMobileNavClick = (option) => {
   cursor: pointer;
   position: absolute;
   right: 0;
-  padding: 0.5rem;
+  padding: 0 5%;
   z-index: 2;
 }
 
 .mobile-menu-btn span {
   width: 25px;
   height: 3px;
-  background: #333;
+  background: #747474;
   margin: 3px 0;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   border-radius: 2px;
@@ -138,6 +151,7 @@ const handleMobileNavClick = (option) => {
   transform: rotate(-45deg) translate(6px, -6px);
 }
 
+/* Menú móvil */
 .mobile-nav {
   display: none;
   position: absolute;
@@ -163,21 +177,16 @@ const handleMobileNavClick = (option) => {
   opacity: 1;
 }
 
-@media (max-width: 850px) {
-  .desktop-nav {
+/* Responsive */
+@media (max-width: 1200px) {
+
+  .desktop-nav,
+  .desktop-only {
     display: none;
   }
 
   .mobile-menu-btn {
     display: flex;
-  }
-
-  .navbar {
-    padding: 1rem;
-  }
-
-  .nav-links {
-    justify-content: center;
   }
 }
 </style>
