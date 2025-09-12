@@ -1,27 +1,25 @@
 <template>
   <div>
     <nav class="navbar">
-      <div class="navbar-content">
-        <!-- Logo solo en escritorio -->
+      <div class="navbar-content ">
+        <!-- logo-->
         <div class="logo-container desktop-only">
-          <a @click.prevent="scrollToHero">
-            <img src="/src/assets/img/logos/logo uacj.png" alt="Logo UACJ" class="logo-img" />
+          <a @click.prevent="scrollToHero" @click="router.push('/')">
+            <img src="/src/assets/img/logos/logo fondo azul.jpg" alt="Logo UACJ" class="logo-img" />
           </a>
         </div>
 
-        <!-- Desktop Menu -->
+        <!--menu desktop -->
         <div class="nav-links desktop-nav">
           <NavButton v-for="option in navOptions" :key="option.id" :option="option" @click="handleNavClick" />
         </div>
 
-        <!-- Mobile Menu Button -->
+        <!--menu mobil -->
         <button class="mobile-menu-btn" @click="toggleMobileMenu">
           <span :class="{ 'rotate-45': mobileMenuOpen }"></span>
           <span :class="{ 'opacity-0': mobileMenuOpen }"></span>
           <span :class="{ 'rotate-minus-45': mobileMenuOpen }"></span>
         </button>
-
-        <!-- Mobile Menu -->
         <div class="mobile-nav" :class="{ 'mobile-nav-open': mobileMenuOpen }">
           <NavButton v-for="option in navOptions" :key="`mobile-${option.id}`" :option="option" :is-mobile="true"
             @click="handleMobileNavClick" />
@@ -38,11 +36,11 @@ import NavButton from "./NavButton.vue";
 const mobileMenuOpen = ref(false);
 
 const navOptions = ref([
-  { id: 'cronograma', label: 'Cronograma', section: 'cronograma' },
-  { id: 'publico', label: 'Participantes', section: 'publico' },
-  { id: 'mesaRedonda', label: 'Temas de mesas redondas', section: 'mesaRedonda' },
-  { id: 'contactos', label: 'Contactos', section: 'contactos' },
-  { id: 'ubicacion', label: 'Ubicación', section: 'ubicacion' },
+  { id: 'cronograma', label: 'Sesiones de estudio de investigacion', section: 'cronograma' },
+  { id: 'contactos', label: 'Temas de investigacion', section: 'contactos' },
+  { id: 'contactos', label: 'Proyectos comerciales', section: 'contactos' },
+  { id: 'mesaRedonda', label: 'Tecnologias', section: 'mesaRedonda' },
+  { id: 'publico', label: 'Miembros', section: 'publico' },
 ]);
 const scrollToHero = () => {
   const section = document.getElementById('hero')
@@ -80,18 +78,16 @@ const handleMobileNavClick = (option) => {
   left: 0;
   right: 0;
   z-index: 9999;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background-color: var(--main-color);
   padding: 1rem 2rem;
   box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-  padding: 32px 0;
+  padding: 8px 0;
 
 }
 
 .navbar-content {
-  max-width: 1200px;
-  margin: 0 auto;
+  margin: 0 5%;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -105,7 +101,7 @@ const handleMobileNavClick = (option) => {
 }
 
 .logo-img {
-  height: 50px;
+  height: 60px;
   width: auto;
 }
 
@@ -115,6 +111,7 @@ const handleMobileNavClick = (option) => {
   gap: 2rem;
   align-items: center;
 }
+
 /* Botón menú móvil */
 .mobile-menu-btn {
   display: none;
@@ -131,7 +128,7 @@ const handleMobileNavClick = (option) => {
 .mobile-menu-btn span {
   width: 25px;
   height: 3px;
-  background: #747474;
+  background: var(--sec-color);
   margin: 3px 0;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   border-radius: 2px;

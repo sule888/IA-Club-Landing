@@ -1,25 +1,11 @@
 <template>
-  <div 
-    
-    @mousemove="onMouseMove"
-    @mouseenter="onMouseEnter"
-    @mouseleave="onMouseLeave"
-  >
+  <div @mousemove="onMouseMove" @mouseenter="onMouseEnter" @mouseleave="onMouseLeave">
     <h2 class="titles">Espacios de participacion</h2>
 
     <div class="main-content">
-      <div 
-        class="robot-section"
-        @mouseenter="onAnimationZoneEnter"
-        @mouseleave="onAnimationZoneLeave"
-      >
-        <Robot3D 
-          width="500px" 
-          :mouse-x="mouseX"
-          :mouse-y="mouseY"
-          :is-rotation-hover="isRotationHover"
-          :is-animation-hover="isAnimationHover"
-        />
+      <div class="robot-section" @mouseenter="onAnimationZoneEnter" @mouseleave="onAnimationZoneLeave">
+        <Robot3D width="500px" :mouse-x="mouseX" :mouse-y="mouseY" :is-rotation-hover="isRotationHover"
+          :is-animation-hover="isAnimationHover" />
       </div>
 
       <div class="items-grid">
@@ -53,7 +39,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import Robot3D from './Robot3D.vue'
+import Robot3D from './GeneralComponents/Robot3D.vue'
 import { User, GraduationCap, Globe, Briefcase } from 'lucide-vue-next'
 
 const mouseX = ref(0)
@@ -65,7 +51,7 @@ const onMouseMove = (event) => {
   const rect = event.currentTarget.getBoundingClientRect()
   const centerX = rect.left + rect.width / 2
   const centerY = rect.top + rect.height / 2
-  
+
   mouseX.value = (event.clientX - centerX) / rect.width
   mouseY.value = (event.clientY - centerY) / rect.height
 }
@@ -91,9 +77,10 @@ const onAnimationZoneLeave = () => {
 </script>
 
 <style scoped>
-h1{
+h1 {
   margin-bottom: 16px;
 }
+
 .title {
   font-size: clamp(1.25rem, 4vw, 2rem);
   font-weight: bold;
@@ -107,6 +94,7 @@ h1{
   align-items: center;
   justify-content: space-between;
 }
+
 .robot-section {
   /* responsive */
   flex: 0 0 400px;
@@ -115,6 +103,7 @@ h1{
   align-items: center;
   justify-content: center;
 }
+
 .items-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -140,8 +129,8 @@ h1{
 }
 
 .icon {
-  width:48px;
-  height:64px;
+  width: 48px;
+  height: 64px;
   margin: 0 auto 1rem;
   color: #6b7280;
   transition: color 0.3s ease;
@@ -157,12 +146,12 @@ h1{
     flex-direction: column;
     gap: 2rem;
   }
-  
+
   .items-grid {
     max-width: 100%;
     grid-template-columns: 1fr 1fr;
   }
-  
+
   .robot-section {
     flex: none;
     width: 100%;
@@ -174,10 +163,9 @@ h1{
   .items-grid {
     grid-template-columns: 1fr;
   }
-  
+
   .robot-section {
     height: 550px;
   }
 }
-
 </style>

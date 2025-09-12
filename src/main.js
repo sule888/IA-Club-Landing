@@ -1,14 +1,18 @@
-import { createApp } from 'vue'
-import './assets/base.css'    
-import App from './App.vue'
-import AOS from 'aos'
-import 'aos/dist/aos.css'
+import { createApp } from "vue";
+import App from "./App.vue";
+import router from "./router";
 
-createApp(App).mount('#app')
+import AOS from "aos";
+import "aos/dist/aos.css";
+import "./assets/base.css";
+
+const app = createApp(App);
+app.use(router);
+app.mount("#app");
 
 AOS.init({
   duration: 1200,
-  easing: 'ease-in-out-sine',
+  easing: "ease-in-out-sine",
   once: false,
-  mirror: false
-})
+  mirror: false,
+});

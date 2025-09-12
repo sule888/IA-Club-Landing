@@ -1,103 +1,54 @@
 <template>
   <div class="hero-container">
-    <!-- Navbar -->
-
-    <Navbar/>
-    <!-- Hero Content -->
+    <Navbar />
     <div class="hero-content">
-      <!-- Left Content -->
-      <div class="hero-text">
-        <div class="hero-subtitle subtitles">CONGRESO INTERNACIONAL</div>
-        <h1 class="hero-title blinking-title title-hero">FRONTERAS INGENIERÍAS</h1>
-        <div class="hero-date subtitles text-main-color">18 y 19 de Septiembre 2025 </div>
-
-        <!-- Countdown Timer -->
-     <Count/>
-      </div>
-
-      <!-- Right Image with Parallax -->
-      <div
-        class="hero-image-container"
-        data-aos="fade-left"
-        data-aos-duration="1000"
-        data-aos-delay="300"
-      >
+      <div class="hero-image-container" data-aos="fade-right" data-aos-duration="1000" data-aos-delay="300">
         <div class="hero-image">
-          <img
-            src="/src/assets/img/png/hero-img.png"
-            alt="Hero Image"
-            class="hero-img"
-          />
-
-  
+          <img src="../assets/img/png/hero.png" alt="Hero Image" class="hero-img" />
+        </div>
+      </div>
+      <div class="hero-text">
+        <h1 class="hero-title blinking-title title-hero">
+          AI Researchers & Engineers Club
+        </h1>
+        <div class="hero-subtitle subtitles text-sec-color">Ciudad Juárez</div>
+        <div class="cont-btns">
+          <MainButton btnTitle="Informacion del club" buttonType="main" />
+          <MainButton btnTitle="Equipos de trabajo" buttonType="main" />
         </div>
       </div>
     </div>
   </div>
 </template>
 <script setup>
-import Count from "./Count.vue";
 import Navbar from "./NavBar/Navbar.vue";
-// Estado reactivo
-
+import MainButton from "./GeneralComponents/MainButton.vue";
 </script>
 
 <style scoped>
 .hero-container {
-  min-height: 100vh;
-
   position: relative;
   overflow: hidden;
 }
 
-/* Hero Content */
 .hero-content {
   display: flex;
-  min-height: 100vh;
-  max-width: none;
+  min-height: 120vh;
   align-items: center;
-  position: relative;
+  justify-content: space-between;
 }
 
-.hero-text {
-  flex: 1;
-  z-index: 2;
-  padding: 0 5%;
-  margin-top: 100px;
-}
-
-.hero-subtitle {
-  margin-bottom: 16px;
-  letter-spacing: 2px;
-}
-
-.hero-title {
-  line-height: 1.1;
-  margin: 32px 0;
-}
-.blinking-title {
- animation: blink 3.5s infinite;
-}
-
-@keyframes blink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.3; }
-}
-
-.hero-date {
-  margin: 32px 0;
-}
-
-/* Hero Image */
 .hero-image-container {
-  position: absolute;
-  top: -10%;
-  right: -15%;
-  width: 70%;
-  height: 120%;
-  z-index: 1;
-  opacity: 0.7;
-  overflow: hidden;
+  flex: 1;
+  position: relative;
+  top: auto;
+  right: auto;
+  width: 100%;
+  height: auto;
+  opacity: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .hero-image {
@@ -113,38 +64,86 @@ import Navbar from "./NavBar/Navbar.vue";
   width: 150%;
   height: 150%;
   object-fit: cover;
-  filter: drop-shadow(0 10px 30px rgba(79, 157, 141, 0.2));
-  transform: scale(1.2);
-  transform: rotate(22deg);
+  transform: rotate(12deg);
 }
 
+.hero-text {
+  flex: .9;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
 
-/* Responsive Design */
+.hero-subtitle {
+  margin-bottom: 16px;
+  letter-spacing: 2px;
+}
+
+.hero-title {
+  line-height: 1.1;
+  margin: 32px 0;
+}
+
+.blinking-title {
+  animation: blink 4.5s infinite;
+}
+
+@keyframes blink {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.3;
+  }
+}
+
+.cont-btns {
+  display: flex;
+  gap: 16px;
+}
+
 @media (max-width: 1200px) {
+
+
   .hero-content {
-     height: 400px;
+    min-height: 60vh;
+  }
+
+  .hero-content {
+    height: 400px;
     gap: 32px;
+  }
+
+  .hero-image {
+    height: 80%;
+
   }
 
   .hero-text {
     padding: 0 5%;
   }
+
   .hero-image-container {
-    width: 70%;
-    height: 110%;
-    right: -20%;
+    width: 100%;
+    height: 50%;
   }
-  
-.hero-text {
-  margin-top: 0px;
-}
+
+  .hero-text {
+    margin-top: 0px;
+  }
+
 
 }
 
 @media (max-width: 950px) {
-  .hero-image{
+  .hero-image {
     display: none;
   }
+
   .hero-image-container {
     display: none;
   }
@@ -154,10 +153,15 @@ import Navbar from "./NavBar/Navbar.vue";
     text-align: center;
     padding: 120px 5%;
   }
- .hero-container,
+
+  .hero-container,
   .hero-content {
     min-height: auto;
     height: auto;
+  }
+
+  .cont-btns {
+    justify-content: center;
   }
 }
 
@@ -169,18 +173,17 @@ import Navbar from "./NavBar/Navbar.vue";
   .hero-img {
     transform: rotate(0deg);
   }
+
   .hero-text {
     padding: 0 5%;
   }
-   .hero-content {
 
+  .hero-content {
     padding: 64px 5%;
   }
+
   .hero-text {
-  margin-top: 54px;
+    margin-top: 54px;
+  }
 }
-
-}
-
-
 </style>

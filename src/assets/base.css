@@ -1,13 +1,12 @@
-@import url('https://fonts.googleapis.com/css2?family=Miriam+Libre:wght@400..700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Miriam+Libre:wght@400..700&display=swap");
 
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Miriam Libre', sans-serif;
+  font-family: "Miriam Libre", sans-serif;
   color: #222;
-  background: #eef1f3; 
+  background: #eef1f3;
 }
-
 
 * {
   margin: 0;
@@ -15,7 +14,8 @@ body {
   box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
   width: 100%;
@@ -27,79 +27,140 @@ html, body {
   width: 100%;
   min-height: 100vh;
 }
-:root{
-  --background-color:#eef1f3;
-  --main-color: #4F9D8D;
-  --sec-color:#b088de
+:root {
+  --background-color: #eef1f3;
+  --main-color: #0063b1;
+  --sec-color: #b14d00;
+}
+.main-divider {
+  width: 100%;
+  background-color: var(--main-color);
+  height: 2px;
+}
+/* ! textos */
+.normal-text {
+  font-size: 16px;
+}
+.normal-text-bold {
+  font-size: 16px;
+  font-weight: bold;
 }
 
-
-
-
-.normal-text{
-  font-size: 16px
+.subtitles {
+  font-size: 32px;
 }
 
-.subtitles{
-  font-size:32px ;
-}
-
-.title-hero{
+.title-hero {
   font-size: 62px;
   font-weight: bold;
 }
-.titles{
+.titles {
   font-size: 54px;
   font-weight: bold;
 }
 
-.text-sec-color{
+.text-sec-color {
   color: var(--sec-color);
   font-weight: bold;
 }
 
-.text-main-color{
+.text-main-color {
   color: var(--main-color);
   font-weight: bold;
 }
-.link{
-  text-decoration: underline;
-   word-break: break-word;
-     display: inline-block;
+.text-white-color {
+  color: var(--background-color);
+  font-weight: bold;
 }
-.link:hover{
+
+/*!  Botones:  */
+.main-btn {
+  background-color: var(--main-color);
+  border-radius: 4px;
+  border: var(--main-color) 2px solid;
+  color: white;
+  padding: 12px;
+  width: auto;
+  cursor: pointer;
+  font-family: "Miriam Libre", sans-serif;
+}
+.main-btn:hover {
+  background-color: #0073cb;
+  border: var(--main-color) 2px solid;
+}
+.btn-desplegable {
+  text-align: left;
+  background-color: transparent;
+  border: none;
+  font-family: "Miriam Libre", sans-serif;
+  cursor: pointer;
+}
+.secondary-btn {
+  background-color: transparent;
+  border-radius: 4px;
+  border: var(--main-color) 2px solid;
+  color: var(--main-color);
+  padding: 12px;
+  width: auto;
+  cursor: pointer;
+  font-family: "Miriam Libre", sans-serif;
+}
+.secondary-btn:hover {
+  background-color: var(--main-color);
+  border: solid 2px var(--main-color);
+  color: white;
+  cursor: pointer;
+}
+.link {
+  text-decoration: underline;
+  word-break: break-word;
+  display: inline-block;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--main-color);
+}
+.link:hover {
   cursor: pointer;
 }
 
+/*! Medias */
 @media (max-width: 1200px) {
-  .title-hero{
-  font-size: 54px;
-  font-weight: bold;
-}
-  .titles{
+  .title-hero {
+    font-size: 54px;
+    font-weight: bold;
+  }
+  .titles {
     font-size: 48px;
   }
-  .subtitles{
+  .subtitles {
     font-size: 24px;
   }
-  .normal-text{
-  font-size: 14px
+  .normal-text {
+    font-size: 14px;
+  }
+  .normal-text-bold {
+    font-size: 14px;
+    font-weight: bold;
+  }
 }
-}
-
 
 @media (max-width: 650px) {
-  .title-hero{
-  font-size: 48px;
-  font-weight: bold;
-}
-  .titles{
+  .title-hero {
+    font-size: 48px;
+    font-weight: bold;
+  }
+  .titles {
     font-size: 36px;
   }
-  .subtitles{
+  .subtitles {
     font-size: 18px;
   }
-  .normal-text{
-  font-size: 12px
-}
+  .normal-text {
+    font-size: 12px;
+  }
+  .normal-text-bold {
+    font-size: 12px;
+    font-weight: bold;
+  }
 }

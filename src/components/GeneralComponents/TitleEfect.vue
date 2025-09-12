@@ -1,8 +1,8 @@
-<!-- <template>
+<template>
   <section class="organizador-section">
-    <h2 ref="animatedText" class="animated-text">
-      Organizadores y contactos
-    </h2>
+    <h1 ref="animatedText" class="animated-text titles">
+      {{ title }}
+    </h1>
   </section>
 </template>
 
@@ -36,22 +36,25 @@ onMounted(() => {
     }
   )
 })
+
+const props = defineProps({
+  title: {
+    type: String
+  }
+})
 </script>
 
 <style scoped>
 .organizador-section {
-  padding: 4rem 2rem;
   display: flex;
-  justify-content: center;
+  justify-content: initial;
   align-items: center;
-  min-height: 60vh;
 }
 
 .animated-text {
-  font-size: 2rem;
   font-weight: bold;
   transform-style: preserve-3d;
   backface-visibility: hidden;
   perspective: 800px;
 }
-</style> -->
+</style>

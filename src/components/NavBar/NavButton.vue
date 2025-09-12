@@ -1,11 +1,6 @@
 <template>
-  <a 
-    class="nav-button"
-    :class="{ 'nav-button-mobile': isMobile }"
-    @click="handleClick"
-    @mouseenter="onMouseEnter"
-    @mouseleave="onMouseLeave"
-  >
+  <a class="nav-button" :class="{ 'nav-button-mobile': isMobile }" @click="handleClick" @mouseenter="onMouseEnter"
+    @mouseleave="onMouseLeave">
     <span class="nav-button-text" :class="{ 'text-active': isHovered }">
       {{ option.label }}
     </span>
@@ -48,7 +43,7 @@ const onMouseLeave = () => {
 <style scoped>
 .nav-button {
   position: relative;
-  color: #4a5568;
+  color: white;
   text-decoration: none;
   font-weight: 500;
   font-size: 1rem;

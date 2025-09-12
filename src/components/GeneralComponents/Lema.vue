@@ -1,13 +1,17 @@
+<script setup>
+const props = defineProps({
+  title: {
+    type: String,
+    default: "Proyectos de investigacion <br> y comericiales",
+  },
+});
+</script>
 <template>
   <section class="full-banner">
     <div class="lines"></div>
     <div class="main-cont">
-      <h1 class="titles headline">
-        Investigación para un mundo<br />conectado
-      </h1>
-      <div class="ejes-cont"></div>
+      <h1 class="titles headline" v-html="title"></h1>
     </div>
-
     <div class="lines"></div>
   </section>
 </template>
@@ -28,6 +32,6 @@
 
 .lines {
   width: 100%;
-  border-top: 3px solid #4d8873; /* mismo color que el ejemplo */
+  border-top: 3px solid var(--main-color);
 }
 </style>
