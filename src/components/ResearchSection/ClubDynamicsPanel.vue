@@ -1,4 +1,6 @@
 <script setup>
+import Sesions from '../SesionsSection/Sesions.vue';
+
 import {
     CalendarDays,
     Handshake,
@@ -8,12 +10,8 @@ import {
     Microscope,
     Users,
     Rocket,
-    FileText,
     Speech,
-    MessageSquare,
-    Github,
-    Youtube,
-    Globe,
+
     BriefcaseBusiness,
 } from "lucide-vue-next";
 import { Icon } from "@iconify/vue";
@@ -75,13 +73,16 @@ const socials = [
 
 <template>
     <section class="panel">
-        <h2 class="subtitles text-sec-color">Contenido del club</h2>
-        <p class="normal-text" style="margin-top: 8px">
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Illum
-            aspernatur, adipisci laborum omnis corrupti nostrum ipsa? Repudiandae
-            eligendi a eos placeat qui ut, quis, ipsum commodi ab non, deleniti
-            tenetur?
-        </p>
+        <div class="heasder">
+            <h2 class="subtitles text-sec-color">Contenido del club</h2>
+            <p class="normal-text">
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Illum
+                aspernatur, adipisci laborum omnis corrupti nostrum ipsa? Repudiandae
+                eligendi a eos placeat qui ut, quis, ipsum commodi ab non, deleniti
+                tenetur?
+            </p>
+        </div>
+
 
         <ul class="list">
             <li v-for="(bull, index) in bullets" :key="index" class="item">
@@ -89,6 +90,7 @@ const socials = [
                 <span class="normal-text-bold">{{ bull.text }}</span>
             </li>
         </ul>
+        <Sesions :sesionesFuturas="sesionesFuturas" />
         <div class="contact-cont">
             <div class="cta-row">
                 <MainButton btnTitle="Unirme al club" />
@@ -106,6 +108,9 @@ const socials = [
                 </MainButton>
             </div>
         </div>
+
+
+
     </section>
 </template>
 
@@ -115,7 +120,13 @@ const socials = [
     background: transparent;
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 32px;
+}
+
+.heasder {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
 }
 
 .list {

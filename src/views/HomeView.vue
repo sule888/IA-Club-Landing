@@ -10,7 +10,6 @@ import ResearchSectionMain from '../components/ResearchSection/ResearchSectionMa
 import ProyectsSection from '../components/ProyectsSection/ProyectsSection.vue';
 import Members from '../components/Members/Members.vue';
 import Public from '../components/Public.vue';
-import Sesions from '../components/Sesions.vue';
 import RobotThreejs from '../components/GeneralComponents/robotThreejs.vue';
 import Robot3D from '../components/GeneralComponents/Robot3D.vue';
 
@@ -39,7 +38,6 @@ const items = [
       <!-- !<Public/>  Sacar la card como secondary card -->
       <AboutUs />
       <!-- ** <div class="space" id="cronograma"></div> -->
-      <!-- <Sesions :sesionesFuturas="sesionesFuturas" /> -->
     </div>
     <div class="space"></div>
 
@@ -117,10 +115,6 @@ const items = [
 
 
 
-
-.margin {
-  margin: 0 5%;
-}
 
 .space {
   height: 128px;

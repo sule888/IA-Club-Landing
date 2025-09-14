@@ -1,6 +1,6 @@
 <template>
     <div class="card">
-        <div class="thumb" role="img" :aria-label="`Imagen de ${p.title}`">
+        <!-- <div class="thumb" role="img" :aria-label="`Imagen de ${p.title}`">
             <img v-if="p.image" :src="p.image" :alt="p.title" />
             <div v-else class="thumb-fallback">
                 <Icon icon="mdi:image-multiple-outline" class="fallback-icon" aria-hidden="true" />
@@ -36,19 +36,19 @@
                 <Icon icon="mdi:information-outline" class="btn-icon" aria-hidden="true" />
                 Conoce más del proyecto
             </button>
-        </div>
+        </div> -->
     </div>
 </template>
 
 <script setup>
-const props = defineProps({
-    id: { type: Number },
-    title: {
-        type: String,
-        defaul
-    }
+// const props = defineProps({
+//     id: { type: Number },
+//     title: {
+//         type: String,
+//         defaul
+//     }
 
-})
+// })
 </script>
 
 <style scoped></style>
