@@ -14,6 +14,10 @@ body {
   box-sizing: border-box;
 }
 
+.margin {
+  margin: 0 5%;
+}
+
 html,
 body {
   margin: 0;
@@ -122,6 +126,20 @@ body {
 }
 .link:hover {
   cursor: pointer;
+}
+.transparent-btn {
+  background: transparent;
+  border: none;
+  width: 100%;
+  padding: 6px 0;
+  cursor: pointer;
+  text-align: left;
+  font-family: "Miriam Libre", sans-serif;
+}
+
+.transparent-btn:focus-visible {
+  outline: 3px solid rgba(0, 99, 177, 0.25);
+  border-radius: 8px;
 }
 
 /*! Medias */

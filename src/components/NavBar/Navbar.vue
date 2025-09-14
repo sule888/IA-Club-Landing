@@ -4,9 +4,9 @@
       <div class="navbar-content ">
         <!-- logo-->
         <div class="logo-container desktop-only">
-          <a @click.prevent="scrollToHero" @click="router.push('/')">
+          <router-link to="/" @click.prevent="scrollToHero" style="display:inline-block;">
             <img src="/src/assets/img/logos/logo fondo azul.jpg" alt="Logo UACJ" class="logo-img" />
-          </a>
+          </router-link>
         </div>
 
         <!--menu desktop -->
