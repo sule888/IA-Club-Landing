@@ -1,60 +1,47 @@
 <template>
   <footer class="footer">
-    <div class="footer-inner">
-      <div class="footer-col">
-        <div class="logos">
-          <img class="logo" src="/src/assets/img/logos/logo fondo blanco sin fondo.png" alt="Logo UACJ" />
-
-        </div>
-
-        <div class="event-info">
-          <h3 class="subtitles">CONGRESO INTERNACIONAL<br />FRONTERAS INGENIERÍAS</h3>
-          <strong class="normal-text text-sec-color">Investigación para un mundo conectado</strong>
-
-          <p class="normal-text"><strong>Fecha:</strong> 18 y 19 de Septiembre 2025</p>
-        </div>
-
-        <div class="quick-links">
-          <a class=" text-main-color normal-text link" href="#" @click.prevent>Descargar estructura del resumen
-            (PDF)</a>
-          <a class=" text-main-color normal-text link" href="#" @click.prevent>Llenar formato de registro (PDF)</a>
-        </div>
+    <div class="margin">
+      <div class="logos">
+        <img class="logo" src="/src/assets/img/logos/logo fondo blanco sin fondo.png" alt="Logo UACJ" />
       </div>
+      <div class="footer-inner">
+        <div class="footer-col">
+          <div class="event-info">
+            <h3 class="subtitles">IA Researches & Engineers Club</h3>
+            <strong class="normal-text text-sec-color">Ciudad Juarez</strong>
+          </div>
+          <h4 class="subtitles">Síguenos</h4>
+          <div class="socials">
+            <a class="text-main-color normal-text link" href="https://www.facebook.com" target="_blank" rel="noopener"
+              aria-label="Facebook UACJ">
+              Facebook IA Researches & Engineers Club
+            </a>
+            <a class="text-main-color normal-text link" href="https://www.facebook.com" target="_blank" rel="noopener"
+              aria-label="Facebook UACJ">
+              Linkedin IA Researches & Engineers Club
+            </a>
+          </div>
 
-      <div class="footer-col">
-        <h4 class="subtitles">Contactos </h4>
-        <ul class="contacts">
-          <li class="contact">
-            <p class="normal-text"><strong>Organizadora:</strong> <br> Dra. Manuela Alejandra Zalapa Garibay -
-              Coordinadora de la Carrera de Ingeniería Mecánica</p>
-            <p class="contact-role normal-text"></p>
-            <a class="email normal-text text-main-color" href="mailto:manuela.zalapa@uacj.mx">manuela.zalapa@uacj.mx</a>
-          </li>
-        </ul>
-
-        <a class="link normal-text text-main-color" @click="() => scrollToSection('contactos')"
-          style="margin-top: 16px;">
-          Ir a la sección de contactos
-        </a>
-      </div>
-
-      <div class="footer-col">
-        <h4 class="subtitles ">Síguenos</h4>
-        <div class="socials">
-          <a class="text-main-color normal-text link" href="https://www.facebook.com/somosuacj/" target="_blank"
-            rel="noopener" aria-label="Facebook UACJ">
-            Facebook UACJ
-          </a>
-        </div>
-
-        <div class="extras">
+          <!-- <div class="extras">
           <p class="normal-text light">
-            © {{ new Date().getFullYear() }} UACJ · Todos los derechos reservados
+            © {{ new Date().getFullYear() }}
           </p>
+        </div> -->
+        </div>
+
+        <div class="footer-col">
+          <h4 class="subtitles">Quick Links</h4>
+
+          <div style="display: flex; gap: 8px; flex-direction: column">
+            <a class="link normal-text text-main-color" @click="scrollToSection(link.scrollTo)"
+              v-for="(link, index) in quickLinks" :key="index">
+              {{ link.name }}
+            </a>
+
+          </div>
         </div>
       </div>
     </div>
-
     <div class="footer-bottom"></div>
   </footer>
 </template>
@@ -64,16 +51,26 @@ const scrollToSection = (section) => {
   const el = document.getElementById(section);
   if (el) el.scrollIntoView({ behavior: "smooth" });
 };
+
+
+const quickLinks = [
+  { name: 'Investigación', scrollTo: 'investigacion' },
+  { name: 'Contenido del club', scrollTo: 'contenido' },
+  { name: 'Sesiones', scrollTo: 'sesiones' },
+  { name: 'Proyectos de investigación y comerciales', scrollTo: 'proyectos' },
+  { name: 'Miembros', scrollTo: 'miembros' },
+  { name: 'Tech Stack', scrollTo: 'techstack' },
+]
 </script>
 
 <style scoped>
 .footer {
   background: #fff;
   border-top: 1px solid rgba(0, 0, 0, 0.08);
+  padding: 32px 0;
 }
 
 .footer-inner {
-  margin: 5%;
   display: grid;
   grid-template-columns: 1.2fr 1fr 0.8fr;
   gap: 32px;
@@ -86,11 +83,7 @@ const scrollToSection = (section) => {
 }
 
 .logos {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 16px;
+  margin-bottom: 16px;
 }
 
 .logo {
