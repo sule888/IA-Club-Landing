@@ -19,7 +19,7 @@
 .main-cont {
     display: flex;
     flex-direction: column;
-    gap: 72px;
+    padding-top: 64px;
 }
 
 .marquee-track {

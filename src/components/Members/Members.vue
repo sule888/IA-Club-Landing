@@ -1,108 +1,123 @@
 <script setup>
-import CarouselMembers from "./CarrouselMembers.vue";
+import { computed } from "vue";
 import CardMember from "./CardMember.vue";
-import { computed, ref } from "vue";
 import TitleMembersSection from "./TitleMembersSection.vue";
+import Perfil from "../../assets/img/perfiles/perfil1.png";
+import Perfil2 from "../../assets/img/perfiles/perfil2.png";
+
 
 const props = defineProps({
     members: { type: Array, default: () => [] },
-})
-// separar por tipo
-const comiteM = computed(() => props.members.filter(m => m.isComiteMember))
-const regulars = computed(() => props.members.filter(m => !m.isComiteMember))
+});
 
-// v-model para el seleccionado del carrusel
-const selected = ref(null)
+const defaultMembers = [
+    {
+        name: "Laura Davis",
+        rol: "Presidenta",
+        img: Perfil,
+        CurrentOcupation: "ML Engineer @ AI Labs",
+        TechStack: ["Python", "PyTorch", "GCP"],
+        Education: "M.Sc. IA — UNAM",
+        cv: "",
+        ContactMedia: [
+            { iconName: "Linkedin", link: "https://linkedin.com" },
+            { iconName: "Github", link: "https://github.com" },
+        ],
+    },
+    {
+        name: "Tom White",
+        rol: "CTO",
+        img: Perfil2,
+        CurrentOcupation: "CTO @ StartUp",
+        TechStack: ["TS", "Node", "AWS"],
+        Education: "B.Sc. CS — UACJ",
+        cv: "",
+        ContactMedia: [],
+    },
+    {
+        name: "Ana García",
+        rol: "Coordinadora",
+        img: Perfil2,
+        CurrentOcupation: "Data Scientist @ FinTech",
+        TechStack: ["Python", "SQL", "dbt"],
+        Education: "M.Sc. DS — IPN",
+        cv: "",
+        ContactMedia: ["https://linkedin.com"],
+    },
+    {
+        name: "Sarah Williams",
+        rol: "",
+        img: Perfil,
+        CurrentOcupation: "Frontend Dev",
+        TechStack: ["Vue", "Vite"],
+        Education: "Ing. Sistemas",
+        cv: "",
+        ContactMedia: ["https://github.com"],
+    },
+    {
+        name: "David Miller",
+        rol: "",
+        img: Perfil,
+        CurrentOcupation: "Backend Dev",
+        TechStack: ["Go", "Postgres"],
+        Education: "Ing. Software",
+        cv: "",
+        ContactMedia: [],
+    },
+    {
+        name: "Emily Johnson",
+        rol: "",
+        img: Perfil2,
+        CurrentOcupation: "Data Analyst",
+        TechStack: ["SQL", "Tableau"],
+        Education: "Lic. Matemáticas",
+        cv: "",
+        ContactMedia: [],
+    },
+    {
+        name: "Jillie Bernard",
+        rol: "",
+        img: Perfil2,
+        CurrentOcupation: "UX Designer",
+        TechStack: ["Figma"],
+        Education: "Diseño",
+        cv: "",
+        ContactMedia: [],
+    },
+];
+
+const items = computed(() =>
+    props.members && props.members.length ? props.members : defaultMembers
+);
 </script>
 
 <template>
-    <section class="members-wrap">
-        <TitleMembersSection />
-        <CarouselMembers v-if="comiteM.length" :members="comiteM" v-model="selected" />
-
-        <div v-if="regulars.length" class="grid">
-            <CardMember v-for="(m, i) in regulars" :key="i" :member="m" />
+    <section class="main-cont">
+        <div class="margin members-cont">
+            <TitleMembersSection />
+            <div v-if="items.length" class="grid">
+                <CardMember v-for="(m, i) in items" :key="i" :member="m" />
+            </div>
         </div>
+
     </section>
 </template>
 
 <style scoped>
-/* Fondo del padre */
-.members-wrap {
-
+.main-cont {
     background: var(--main-color);
-    padding: 32px 20px 48px;
+    padding-bottom: 64px;
 }
 
-/* Panel info */
-.detail {
-    margin: 18px auto 28px;
-    max-width: 920px;
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.18);
-    color: #fff;
-    border-radius: 16px;
-    padding: 20px;
-}
-
-.title {
-    font-size: 1.4rem;
-    font-weight: 800;
-}
-
-.subtitle {
-    margin-top: 2px;
-    opacity: 0.95;
-}
-
-.tags {
+.members-cont {
     display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin: 10px 0;
+    flex-direction: column;
+    gap: 32px;
 }
 
-.tag {
-    padding: 4px 10px;
-    border-radius: 999px;
-    background: rgba(255, 255, 255, 0.16);
-    color: #fff;
-    font-weight: 600;
-    font-size: 0.85rem;
-}
-
-.edu {
-    opacity: 0.95;
-}
-
-.links {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-    margin-top: 8px;
-}
-
-.links a {
-    color: #fff;
-    text-decoration: underline;
-}
-
-.cv-btn {
-    margin-top: 10px;
-    display: inline-block;
-    background: #fff;
-    color: #0f1220;
-    padding: 8px 14px;
-    border-radius: 12px;
-    font-weight: 700;
-}
-
-/* Grid miembros normales */
 .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 18px;
-    max-width: 1200px;
-    margin: 0 auto;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 32px;
 }
 </style>

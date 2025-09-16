@@ -53,6 +53,9 @@ body {
 .subtitles {
   font-size: 32px;
 }
+.mini {
+  font-size: 10px;
+}
 
 .title-hero {
   font-size: 62px;
@@ -161,6 +164,9 @@ body {
     font-size: 14px;
     font-weight: bold;
   }
+  .mini {
+    font-size: 8px;
+  }
 }
 
 @media (max-width: 650px) {
@@ -180,5 +186,8 @@ body {
   .normal-text-bold {
     font-size: 12px;
     font-weight: bold;
+  }
+  .mini {
+    font-size: 6px;
   }
 }
